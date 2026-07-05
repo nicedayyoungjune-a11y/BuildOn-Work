@@ -15,14 +15,14 @@ export default function WorkerMyPage() {
   return (
     <WorkerPageShell
       title="내 정보"
-      description="선호 직종, 선호 지역, 지급 조건, 최근 지원 내역을 확인하세요."
+      description="이름, 연락처, 선호 직종, 선호 지역, 지급 조건을 확인하세요."
     >
       {worker ? (
         <WorkerProfileCard worker={worker} recentApplications={recentApplications} />
       ) : (
         <EmptyState
           title="근로자 정보를 찾을 수 없습니다."
-          description="현재 mock 데이터 범위에서 표시할 근로자 정보가 없습니다."
+          description="현재 표시할 근로자 정보가 없습니다."
         />
       )}
     </WorkerPageShell>

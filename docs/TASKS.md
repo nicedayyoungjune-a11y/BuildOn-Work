@@ -50,6 +50,14 @@
 - [x] Add worker page shell, summary cards, job cards, job detail, application list, and profile card components.
 - [x] Use existing mock data only, without authentication, DB, API, or real application actions.
 
+## Phase 8: Worker Screen Review
+
+- [x] Review worker job list, job detail, application history, and my page screens.
+- [x] Refine worker screen wording with natural construction site terminology.
+- [x] Improve job card information priority for daily wage, work date, region, job category, headcount, and payment option.
+- [x] Improve mobile card spacing, status badge clarity, and primary action readability.
+- [x] Keep the work limited to static screens without new features, new data, integrations, or real actions.
+
 ## Later Phases
 
 - [ ] Add DB connection only when approved.

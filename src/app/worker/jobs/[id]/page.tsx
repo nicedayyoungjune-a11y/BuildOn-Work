@@ -24,14 +24,14 @@ export default async function WorkerJobDetailPage({ params }: WorkerJobDetailPag
   return (
     <WorkerPageShell
       title="일자리 상세"
-      description="지원 전에 근무일, 일당, 지급 조건, 현장 주소를 확인하세요."
+      description="지원하기 전에 일당, 근무일, 출근 시간, 현장 주소를 확인하세요."
     >
       {job ? (
         <WorkerJobDetail job={job} site={site} />
       ) : (
         <EmptyState
           title="일자리를 찾을 수 없습니다."
-          description="등록된 mock 일자리 목록에서 다시 확인하세요."
+          description="일자리 찾기 화면에서 다시 확인하세요."
         />
       )}
     </WorkerPageShell>

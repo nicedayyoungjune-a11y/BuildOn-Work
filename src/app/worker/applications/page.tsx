@@ -30,14 +30,14 @@ export default function WorkerApplicationsPage() {
   return (
     <WorkerPageShell
       title="지원한 일자리"
-      description="지원한 일자리와 출근 확정 여부를 확인하세요."
+      description="지원한 일자리와 출근 확정 여부를 한눈에 확인하세요."
     >
       <WorkerSummaryCards
         items={[
           {
             label: "지원한 일자리",
             value: `${applications.length}건`,
-            description: "현재 근로자의 지원 내역입니다."
+            description: "최근 지원한 현장 일자리입니다."
           },
           {
             label: "출근 확정",
@@ -47,17 +47,17 @@ export default function WorkerApplicationsPage() {
           {
             label: "지원 완료",
             value: `${acceptedApplications.length}건`,
-            description: "현장에서 검토 후 확정된 지원입니다."
+            description: "현장 확인이 끝난 지원입니다."
           }
         ]}
       />
-      <div className="mt-6">
+      <div className="mt-5 sm:mt-6">
         {items.length > 0 ? (
           <WorkerApplicationList items={items} />
         ) : (
           <EmptyState
-            title="지원한 일자리가 없습니다."
-            description="일자리 찾기 화면에서 원하는 현장을 확인하세요."
+            title="아직 지원한 일자리가 없습니다."
+            description="조건에 맞는 현장이 생기면 일자리 찾기에서 확인할 수 있습니다."
           />
         )}
       </div>
