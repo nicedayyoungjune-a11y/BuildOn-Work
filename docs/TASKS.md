@@ -58,6 +58,28 @@
 - [x] Improve mobile card spacing, status badge clarity, and primary action readability.
 - [x] Keep the work limited to static screens without new features, new data, integrations, or real actions.
 
+## Phase 9: Company Webapp Static Screens
+
+- [x] Create company dashboard, sites, jobs, applicants, and attendance routes.
+- [x] Add company page shell, summary cards, site cards, job cards, applicant list, attendance list, and dashboard overview components.
+- [x] Use existing mock data only, without authentication, DB, API, approval actions, attendance actions, or real save actions.
+- [x] Keep company screens focused on today needed workers, sites, jobs, applicants, attendance status, and payment option guidance.
+
+## Phase 10: Company Screen Review
+
+- [x] Review company dashboard, sites, jobs, applicants, and attendance screens.
+- [x] Refine company screen wording with natural site manager terminology.
+- [x] Improve information priority for today needed workers, applicants, scheduled workers, attendance completed, and absent workers.
+- [x] Improve company card spacing, status badge clarity, and mobile readability.
+- [x] Keep the work limited to static screens without new files, new data, integrations, events, or real actions.
+
+## Phase 11: Admin Webapp Static Screens
+
+- [x] Create admin dashboard, workers, companies, sites, jobs, applications, and inquiries routes.
+- [x] Add admin page shell, summary cards, dashboard overview, and list components for each admin area.
+- [x] Use existing mock data only, without authentication, authorization, DB, API, edit, delete, approval, status change, or reply actions.
+- [x] Keep admin screens focused on operational visibility for workers, companies, sites, jobs, applications, attendance, inquiries, and payment option status.
+
 ## Later Phases
 
 - [ ] Add DB connection only when approved.
