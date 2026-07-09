@@ -38,13 +38,13 @@ export function LandingHeader() {
             href="/worker/jobs"
             className="inline-flex min-h-10 items-center justify-center rounded-full border border-blue-100 bg-white px-4 text-sm font-bold text-[#071B3A] shadow-sm transition-colors hover:bg-blue-50"
           >
-            일자리 보기
+            일자리 화면 보기
           </Link>
           <Link
             href="/company/dashboard"
             className="inline-flex min-h-10 items-center justify-center rounded-full bg-blue-700 px-4 text-sm font-bold text-white shadow-md shadow-blue-700/20 transition-colors hover:bg-blue-800"
           >
-            현장관리 보기
+            현장관리 화면 보기
           </Link>
         </div>
       </div>
