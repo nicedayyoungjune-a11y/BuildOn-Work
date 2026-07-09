@@ -21,6 +21,15 @@ const jobTitleById: Record<string, string> = {
   "job-003": "전기 보조 1명 모집"
 };
 
+function maskPhone(phone: string) {
+  const parts = phone.split("-");
+  if (parts.length !== 3) {
+    return "연락처 확인 예정";
+  }
+
+  return `${parts[0]}-****-${parts[2]}`;
+}
+
 export function AdminCompanyList({ companies, sites, jobs }: AdminCompanyListProps) {
   if (companies.length === 0) {
     return <EmptyState title="아직 등록된 건설사가 없습니다." />;
@@ -55,8 +64,8 @@ export function AdminCompanyList({ companies, sites, jobs }: AdminCompanyListPro
               </div>
             </div>
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
-              <InfoItem label="연락처" value={company.phone} />
-              <InfoItem label="등록 일자리" value={`${companyJobs.length}건`} />
+              <InfoItem label="대표 연락처" value={maskPhone(company.phone)} />
+              <InfoItem label="등록 일자리" value={`${companyJobs.length}건`} strong />
               <InfoItem label="최근 일자리" value={recentJob ? jobTitleById[recentJob.id] ?? recentJob.title : "아직 등록된 일자리가 없습니다."} />
               <InfoItem label="운영 지역" value={`${company.regions.length}곳`} />
             </dl>
@@ -67,11 +76,13 @@ export function AdminCompanyList({ companies, sites, jobs }: AdminCompanyListPro
   );
 }
 
-function InfoItem({ label, value }: { label: string; value: string }) {
+function InfoItem({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="rounded-lg bg-blue-50 px-3 py-3 sm:px-4">
       <dt className="text-xs font-semibold text-slate-500">{label}</dt>
-      <dd className="mt-1 font-bold text-[#071B3A]">{value}</dd>
+      <dd className={`mt-1 break-keep font-bold ${strong ? "text-blue-800" : "text-[#071B3A]"}`}>
+        {value}
+      </dd>
     </div>
   );
 }

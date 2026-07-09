@@ -90,11 +90,12 @@ export function AdminJobList({ jobs, sites, companies, applications, assignments
               </div>
             </div>
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
-              <InfoItem label="건설사" value={company ? companyNameById[company.id] ?? company.companyName : "확인 전"} />
+              <InfoItem label="건설사명" value={company ? companyNameById[company.id] ?? company.companyName : "확인 전"} />
+              <InfoItem label="모집인원" value={`${job.requiredWorkers}명`} strong />
+              <InfoItem label="지원자" value={`${jobApplications.length}명`} strong />
+              <InfoItem label="출근 확정자" value={`${confirmedWorkers.length}명`} strong />
               <InfoItem label="근무일" value={job.workDate} />
               <InfoItem label="직종" value={categoryLabels[job.category] ?? job.category} />
-              <InfoItem label="지원자" value={`${jobApplications.length}명`} />
-              <InfoItem label="출근 확정" value={`${confirmedWorkers.length}명`} />
               <InfoItem label="지급 조건" value={paymentLabels[job.paymentOption]} />
             </dl>
           </article>
@@ -104,11 +105,13 @@ export function AdminJobList({ jobs, sites, companies, applications, assignments
   );
 }
 
-function InfoItem({ label, value }: { label: string; value: string }) {
+function InfoItem({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="rounded-lg bg-blue-50 px-3 py-3 sm:px-4">
       <dt className="text-xs font-semibold text-slate-500">{label}</dt>
-      <dd className="mt-1 font-bold text-[#071B3A]">{value}</dd>
+      <dd className={`mt-1 break-keep font-bold ${strong ? "text-blue-800" : "text-[#071B3A]"}`}>
+        {value}
+      </dd>
     </div>
   );
 }

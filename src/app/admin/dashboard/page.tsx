@@ -12,8 +12,9 @@ import { mockWorkers } from "@/data/mockWorkers";
 export default function AdminDashboardPage() {
   const scheduledAttendance = mockAttendance.filter((record) => record.status === "pending").length;
   const checkedIn = mockAttendance.filter(
-    (record) => record.status === "checked_in" || record.status === "completed"
+    (record) => record.status === "checked_in"
   ).length;
+  const absent = mockAttendance.filter((record) => record.status === "absent").length;
   const pendingInquiries = mockInquiries.filter((inquiry) => inquiry.status !== "resolved").length;
 
   return (
@@ -53,6 +54,11 @@ export default function AdminDashboardPage() {
             label: "문의 접수",
             value: `${mockInquiries.length}건`,
             description: `처리 예정 ${pendingInquiries}건입니다.`
+          },
+          {
+            label: "확인 필요",
+            value: `${scheduledAttendance + absent + pendingInquiries}건`,
+            description: "출근 확인과 문의 확인이 필요한 항목입니다."
           }
         ]}
       />
@@ -64,6 +70,7 @@ export default function AdminDashboardPage() {
           inquiries={mockInquiries}
           scheduledAttendance={scheduledAttendance}
           checkedIn={checkedIn}
+          absent={absent}
         />
       </div>
     </AdminPageShell>

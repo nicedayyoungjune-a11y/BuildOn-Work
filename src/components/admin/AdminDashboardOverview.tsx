@@ -11,6 +11,7 @@ type AdminDashboardOverviewProps = {
   inquiries: Inquiry[];
   scheduledAttendance: number;
   checkedIn: number;
+  absent: number;
 };
 
 const jobTitleById: Record<string, string> = {
@@ -38,14 +39,16 @@ export function AdminDashboardOverview({
   attendance,
   inquiries,
   scheduledAttendance,
-  checkedIn
+  checkedIn,
+  absent
 }: AdminDashboardOverviewProps) {
   const recentJobs = jobs.slice(0, 3);
   const recentInquiries = inquiries.slice(0, 3);
   const recentAttendance = attendance.slice(0, 4);
   const pendingItems = [
-    `출근 예정자 ${scheduledAttendance}명`,
+    `출근 확인 전 ${scheduledAttendance}명`,
     `출근 완료 ${checkedIn}명`,
+    `미출근 ${absent}명`,
     `확인이 필요한 문의 ${inquiries.filter((inquiry) => inquiry.status !== "resolved").length}건`
   ];
 
@@ -118,18 +121,26 @@ export function AdminDashboardOverview({
           <StatusBadge tone="blue">{attendance.length}건</StatusBadge>
         </div>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {recentAttendance.map((record) => (
-            <article key={record.id} className="rounded-lg bg-blue-50 px-4 py-3">
-              <h3 className="font-bold text-[#071B3A]">
-                {jobTitleById[record.jobPostId] ?? "일자리 확인 중"}
-              </h3>
-              <div className="mt-3">
-                <StatusBadge tone={attendanceTone(record.status)}>
-                  {attendanceLabels[record.status]}
-                </StatusBadge>
-              </div>
-            </article>
-          ))}
+          {recentAttendance.map((record) => {
+            const isAbsent = record.status === "absent";
+
+            return (
+              <article
+                key={record.id}
+                className={`rounded-lg px-4 py-3 ${isAbsent ? "bg-red-50" : "bg-blue-50"}`}
+              >
+                <h3 className="font-bold text-[#071B3A]">
+                  {jobTitleById[record.jobPostId] ?? "일자리 확인 중"}
+                </h3>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <StatusBadge tone={attendanceTone(record.status)}>
+                    {attendanceLabels[record.status]}
+                  </StatusBadge>
+                  {isAbsent ? <StatusBadge tone="red">확인 필요</StatusBadge> : null}
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
 
@@ -138,7 +149,7 @@ export function AdminDashboardOverview({
           <p className="text-sm font-bold text-blue-700">확인 항목</p>
           <h2 className="mt-2 text-2xl font-bold text-[#071B3A]">확인이 필요한 항목</h2>
         </div>
-        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {pendingItems.map((item) => (
             <div key={item} className="rounded-lg bg-blue-50 px-4 py-3">
               <p className="text-sm font-bold text-[#071B3A]">{item}</p>

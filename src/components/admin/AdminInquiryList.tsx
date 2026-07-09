@@ -36,6 +36,15 @@ const inquiryDisplayById: Record<string, { name: string; title: string; summary:
   }
 };
 
+function maskPhone(phone: string) {
+  const parts = phone.split("-");
+  if (parts.length !== 3) {
+    return "연락처 확인 예정";
+  }
+
+  return `${parts[0]}-****-${parts[2]}`;
+}
+
 export function AdminInquiryList({ inquiries }: AdminInquiryListProps) {
   if (inquiries.length === 0) {
     return <EmptyState title="아직 접수된 문의가 없습니다." />;
@@ -75,9 +84,9 @@ export function AdminInquiryList({ inquiries }: AdminInquiryListProps) {
             </div>
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
               <InfoItem label="문의자" value={display?.name ?? inquiry.name} />
-              <InfoItem label="연락처" value={inquiry.phone} />
+              <InfoItem label="연락처" value={maskPhone(inquiry.phone)} />
               <InfoItem label="문의 유형" value={userTypeLabels[inquiry.userType]} />
-              <InfoItem label="문의 상태" value={inquiryStatusLabels[inquiry.status]} />
+              <InfoItem label="문의 상태" value={inquiryStatusLabels[inquiry.status]} strong />
             </dl>
           </article>
         );
@@ -86,11 +95,13 @@ export function AdminInquiryList({ inquiries }: AdminInquiryListProps) {
   );
 }
 
-function InfoItem({ label, value }: { label: string; value: string }) {
+function InfoItem({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="rounded-lg bg-blue-50 px-3 py-3 sm:px-4">
       <dt className="text-xs font-semibold text-slate-500">{label}</dt>
-      <dd className="mt-1 font-bold text-[#071B3A]">{value}</dd>
+      <dd className={`mt-1 break-keep font-bold ${strong ? "text-blue-800" : "text-[#071B3A]"}`}>
+        {value}
+      </dd>
     </div>
   );
 }

@@ -15,7 +15,7 @@ type AdminApplicationListProps = {
 };
 
 const applicationStatusLabels: Record<JobApplication["status"], string> = {
-  submitted: "지원 완료",
+  submitted: "확인 전",
   accepted: "출근 확정",
   rejected: "마감",
   cancelled: "취소"
@@ -95,9 +95,10 @@ export function AdminApplicationList({
             </div>
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
               <InfoItem label="현장명" value={site ? siteNameById[site.id] ?? site.name : "확인 전"} />
+              <InfoItem label="근무일" value={job?.workDate ?? "확인 전"} strong />
               <InfoItem label="직종" value={job ? categoryLabels[job.category] ?? job.category : "확인 전"} />
               <InfoItem label="지원 상태" value={applicationStatusLabels[application.status]} />
-              <InfoItem label="근무일" value={job?.workDate ?? "확인 전"} />
+              <InfoItem label="출근 확정 여부" value={assignment ? "출근 확정" : "확인 전"} strong />
             </dl>
           </article>
         );
@@ -106,11 +107,13 @@ export function AdminApplicationList({
   );
 }
 
-function InfoItem({ label, value }: { label: string; value: string }) {
+function InfoItem({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="rounded-lg bg-blue-50 px-3 py-3 sm:px-4">
       <dt className="text-xs font-semibold text-slate-500">{label}</dt>
-      <dd className="mt-1 font-bold text-[#071B3A]">{value}</dd>
+      <dd className={`mt-1 break-keep font-bold ${strong ? "text-blue-800" : "text-[#071B3A]"}`}>
+        {value}
+      </dd>
     </div>
   );
 }

@@ -79,10 +79,10 @@ export function AdminSiteList({ sites, companies, jobs }: AdminSiteListProps) {
               </div>
             </div>
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
-              <InfoItem label="건설사" value={company ? companyNameById[company.id] ?? company.companyName : "확인 전"} />
-              <InfoItem label="담당자" value={display?.managerName ?? site.managerName} />
-              <InfoItem label="필요 직종" value={categories.map((category) => categoryLabels[category] ?? category).join(", ") || "등록된 일자리 없음"} />
-              <InfoItem label="연락처" value={site.managerPhone} />
+              <InfoItem label="건설사명" value={company ? companyNameById[company.id] ?? company.companyName : "확인 전"} strong />
+              <InfoItem label="현장 담당자" value={display?.managerName ?? site.managerName} />
+              <InfoItem label="필요한 직종" value={categories.map((category) => categoryLabels[category] ?? category).join(", ") || "등록된 일자리 없음"} strong />
+              <InfoItem label="현장 주소" value={display?.address ?? site.address} />
             </dl>
           </article>
         );
@@ -91,11 +91,13 @@ export function AdminSiteList({ sites, companies, jobs }: AdminSiteListProps) {
   );
 }
 
-function InfoItem({ label, value }: { label: string; value: string }) {
+function InfoItem({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="rounded-lg bg-blue-50 px-3 py-3 sm:px-4">
       <dt className="text-xs font-semibold text-slate-500">{label}</dt>
-      <dd className="mt-1 font-bold text-[#071B3A]">{value}</dd>
+      <dd className={`mt-1 break-keep font-bold ${strong ? "text-blue-800" : "text-[#071B3A]"}`}>
+        {value}
+      </dd>
     </div>
   );
 }

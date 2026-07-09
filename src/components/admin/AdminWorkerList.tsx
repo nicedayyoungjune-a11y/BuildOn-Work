@@ -34,6 +34,15 @@ const paymentLabels: Record<string, string> = {
   weekly: "주급"
 };
 
+function maskPhone(phone: string) {
+  const parts = phone.split("-");
+  if (parts.length !== 3) {
+    return "연락처 확인 예정";
+  }
+
+  return `${parts[0]}-****-${parts[2]}`;
+}
+
 export function AdminWorkerList({ workers, applications }: AdminWorkerListProps) {
   if (workers.length === 0) {
     return <EmptyState title="아직 등록된 근로자가 없습니다." />;
@@ -57,7 +66,9 @@ export function AdminWorkerList({ workers, applications }: AdminWorkerListProps)
                 <h2 className="mt-3 text-xl font-bold text-[#071B3A] sm:text-2xl">
                   {workerNameById[worker.id] ?? worker.name}
                 </h2>
-                <p className="mt-2 text-sm font-semibold text-blue-700">{worker.phone}</p>
+                <p className="mt-2 text-sm font-semibold text-blue-700">
+                  연락처 {maskPhone(worker.phone)}
+                </p>
               </div>
               <div className="rounded-xl bg-[#0B1F3A] px-4 py-3 text-white sm:text-right">
                 <p className="text-xs font-semibold text-blue-100">최근 지원 내역</p>
@@ -65,9 +76,9 @@ export function AdminWorkerList({ workers, applications }: AdminWorkerListProps)
               </div>
             </div>
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
-              <InfoItem label="선호 지역" value={worker.preferredRegions.map((region) => regionLabels[region] ?? region).join(", ")} />
-              <InfoItem label="선호 직종" value={worker.jobCategories.map((category) => categoryLabels[category] ?? category).join(", ")} />
-              <InfoItem label="선호 지급 조건" value={paymentLabels[worker.preferredPaymentOption]} />
+              <InfoItem label="선호 지역" value={worker.preferredRegions.map((region) => regionLabels[region] ?? region).join(", ")} strong />
+              <InfoItem label="선호 직종" value={worker.jobCategories.map((category) => categoryLabels[category] ?? category).join(", ")} strong />
+              <InfoItem label="선호 지급 조건" value={paymentLabels[worker.preferredPaymentOption]} strong />
               <InfoItem label="경력" value={`${worker.experienceYears}년`} />
             </dl>
           </article>
@@ -77,11 +88,13 @@ export function AdminWorkerList({ workers, applications }: AdminWorkerListProps)
   );
 }
 
-function InfoItem({ label, value }: { label: string; value: string }) {
+function InfoItem({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="rounded-lg bg-blue-50 px-3 py-3 sm:px-4">
       <dt className="text-xs font-semibold text-slate-500">{label}</dt>
-      <dd className="mt-1 font-bold text-[#071B3A]">{value}</dd>
+      <dd className={`mt-1 break-keep font-bold ${strong ? "text-blue-800" : "text-[#071B3A]"}`}>
+        {value}
+      </dd>
     </div>
   );
 }
