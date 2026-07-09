@@ -34,7 +34,7 @@ const faqs = [
 
 export function LandingFaq() {
   return (
-    <section className="bg-white px-5 py-18 sm:px-6 lg:px-8">
+    <section id="faq" className="bg-white px-5 py-18 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
         <LandingSectionTitle
           eyebrow="FAQ"

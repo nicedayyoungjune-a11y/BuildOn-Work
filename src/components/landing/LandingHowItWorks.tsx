@@ -10,7 +10,7 @@ const companySteps = [
 
 export function LandingHowItWorks() {
   return (
-    <section className="bg-white px-5 py-18 sm:px-6 lg:px-8">
+    <section id="how-it-works" className="bg-white px-5 py-18 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <LandingSectionTitle
           eyebrow="이용 방법"

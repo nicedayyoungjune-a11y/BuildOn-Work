@@ -14,7 +14,7 @@ const dashboardStats = [
 
 export function LandingHero() {
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(135deg,#F8FBFF_0%,#FFFFFF_45%,#EEF5FF_100%)]">
+    <section id="service" className="relative overflow-hidden bg-[linear-gradient(135deg,#F8FBFF_0%,#FFFFFF_45%,#EEF5FF_100%)]">
       <div className="absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full bg-blue-200/30 blur-3xl" />
       <div className="relative mx-auto grid min-h-[680px] max-w-6xl items-center gap-10 px-5 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
         <div>
