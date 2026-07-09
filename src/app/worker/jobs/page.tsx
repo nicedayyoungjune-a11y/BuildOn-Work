@@ -10,20 +10,20 @@ export default function WorkerJobsPage() {
   return (
     <WorkerPageShell
       title="일자리 찾기"
-      description="가까운 현장과 원하는 직종의 일자리를 확인하세요."
+      description="일당, 근무일, 지역, 직종을 먼저 비교하고 가까운 현장을 확인하세요."
       activeKey="jobs"
     >
       <WorkerSummaryCards
         items={[
           {
-            label: "오늘 볼 수 있는 일자리",
+            label: "확인 가능한 일자리",
             value: `${mockJobs.length}건`,
-            description: "경기와 충청 지역 현장 일자리입니다."
+            description: "경기와 충청 지역의 화면 예시 일자리입니다."
           },
           {
-            label: "당일 지급",
+            label: "당일 지급 조건",
             value: `${sameDayJobs.length}건`,
-            description: "현장 안내 기준으로 당일 지급 조건을 확인할 수 있습니다."
+            description: "현장에서 안내한 지급 조건을 확인합니다."
           },
           {
             label: "주급",

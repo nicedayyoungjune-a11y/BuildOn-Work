@@ -15,7 +15,7 @@ export default function WorkerMyPage() {
   return (
     <WorkerPageShell
       title="내 정보"
-      description="이름, 연락처, 선호 직종, 선호 지역, 지급 조건을 확인하세요."
+      description="선호 지역, 직종, 지급 조건과 최근 지원 내역을 확인하세요."
       activeKey="my"
     >
       {worker ? (

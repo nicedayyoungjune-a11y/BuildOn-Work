@@ -76,28 +76,32 @@ export function WorkerJobCard({ job }: WorkerJobCardProps) {
         </div>
       </div>
       <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
-        <InfoItem label="근무일" value={job.workDate} />
+        <InfoItem label="근무일" value={job.workDate} strong />
+        <InfoItem label="지역" value={regionLabels[job.region]} strong />
+        <InfoItem label="직종" value={jobCategoryLabels[job.category]} />
+        <InfoItem label="지급 조건" value={paymentOptionLabels[job.paymentOption]} />
         <InfoItem label="근무 시간" value={`${job.startTime} - ${job.endTime}`} />
         <InfoItem label="모집인원" value={`${job.requiredWorkers}명`} />
-        <InfoItem label="지급 조건" value={paymentOptionLabels[job.paymentOption]} />
       </dl>
       <div className="mt-4">
         <Link
           href={`/worker/jobs/${job.id}`}
           className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-[#0B1F3A] px-5 text-sm font-bold text-white transition-colors hover:bg-[#12315C] sm:w-auto"
         >
-          상세 보기
+          상세 확인
         </Link>
       </div>
     </article>
   );
 }
 
-function InfoItem({ label, value }: { label: string; value: string }) {
+function InfoItem({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="rounded-lg bg-blue-50 px-3 py-3 sm:px-4">
       <dt className="text-xs font-semibold text-slate-500">{label}</dt>
-      <dd className="mt-1 font-bold text-[#071B3A]">{value}</dd>
+      <dd className={`mt-1 font-bold ${strong ? "text-blue-800" : "text-[#071B3A]"}`}>
+        {value}
+      </dd>
     </div>
   );
 }

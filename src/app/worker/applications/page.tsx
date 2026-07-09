@@ -30,7 +30,7 @@ export default function WorkerApplicationsPage() {
   return (
     <WorkerPageShell
       title="지원한 일자리"
-      description="지원한 일자리와 출근 확정 여부를 한눈에 확인하세요."
+      description="화면 예시 기준으로 지원 상태와 출근 확정 여부를 구분해 확인하세요."
       activeKey="applications"
     >
       <WorkerSummaryCards
@@ -41,12 +41,12 @@ export default function WorkerApplicationsPage() {
             description: "최근 지원한 현장 일자리입니다."
           },
           {
-            label: "출근 확정",
+            label: "출근 확정 여부",
             value: `${confirmedAssignments.length}건`,
             description: "출근 예정자로 확정된 일자리입니다."
           },
           {
-            label: "지원 완료",
+            label: "현장 확인 완료",
             value: `${acceptedApplications.length}건`,
             description: "현장 확인이 끝난 지원입니다."
           }

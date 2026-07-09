@@ -43,27 +43,39 @@ const regionLabels: Record<Region, string> = {
   chungcheong_cheongju: "충북 청주"
 };
 
+function maskPhone(phone: string) {
+  const parts = phone.split("-");
+  if (parts.length !== 3) {
+    return "연락처 확인 예정";
+  }
+
+  return `${parts[0]}-****-${parts[2]}`;
+}
+
 export function WorkerProfileCard({ worker, recentApplications }: WorkerProfileCardProps) {
   return (
     <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
       <section className="rounded-xl border border-blue-100 bg-white p-4 shadow-lg shadow-blue-950/5 sm:p-5">
-        <p className="text-sm font-bold text-blue-700">근로자 기본 정보</p>
+        <p className="text-sm font-bold text-blue-700">내 기본 정보</p>
         <h2 className="mt-3 text-2xl font-bold text-[#071B3A] sm:text-3xl">
           {workerNameById[worker.id] ?? worker.name}
         </h2>
         <dl className="mt-5 space-y-2 text-sm sm:mt-6">
-          <InfoItem label="연락처" value={worker.phone} />
+          <InfoItem label="연락처" value={maskPhone(worker.phone)} />
           <InfoItem
             label="선호 직종"
             value={worker.jobCategories.map((category) => jobCategoryLabels[category]).join(", ")}
+            strong
           />
           <InfoItem
             label="선호 지역"
             value={worker.preferredRegions.map((region) => regionLabels[region]).join(", ")}
+            strong
           />
           <InfoItem
             label="선호 지급 조건"
             value={paymentOptionLabels[worker.preferredPaymentOption]}
+            strong
           />
           <InfoItem label="경력" value={`${worker.experienceYears}년`} />
         </dl>
@@ -73,7 +85,7 @@ export function WorkerProfileCard({ worker, recentApplications }: WorkerProfileC
           <div>
             <p className="text-sm font-bold text-blue-700">최근 지원 내역</p>
             <h2 className="mt-2 text-2xl font-bold text-[#071B3A]">
-              지원한 일자리 요약
+              지원 상태 요약
             </h2>
           </div>
           <StatusBadge tone="blue">{recentApplications.length}건</StatusBadge>
@@ -91,18 +103,21 @@ export function WorkerProfileCard({ worker, recentApplications }: WorkerProfileC
           ))}
         </div>
         <p className="mt-5 rounded-lg bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-600">
-          이 정보는 일자리 추천과 지원 내역 확인에 사용할 예정입니다.
+          출근 전에는 근무일, 현장 위치, 지급 조건을 다시 확인하세요. 실제 계정 기능은
+          이후 단계에서 연결됩니다.
         </p>
       </section>
     </div>
   );
 }
 
-function InfoItem({ label, value }: { label: string; value: string }) {
+function InfoItem({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="rounded-lg bg-blue-50 px-3 py-3 sm:px-4">
       <dt className="text-xs font-semibold text-slate-500">{label}</dt>
-      <dd className="mt-1 font-bold text-[#071B3A]">{value}</dd>
+      <dd className={`mt-1 font-bold ${strong ? "text-blue-800" : "text-[#071B3A]"}`}>
+        {value}
+      </dd>
     </div>
   );
 }

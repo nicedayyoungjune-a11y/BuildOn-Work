@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { StatusBadge } from "@/components/common/StatusBadge";
 import type { JobCategory } from "@/constants/jobCategory";
 import type { PaymentOption } from "@/constants/paymentOption";
@@ -14,7 +15,7 @@ const checkItems = [
   "근무일과 출근 시간을 확인하세요.",
   "현장 주소를 확인하고 이동 시간을 미리 확인하세요.",
   "지급 조건은 현장 안내 기준을 따릅니다.",
-  "안전모 등 기본 안전장비를 준비하세요."
+  "안전모, 안전화 등 기본 안전장비를 준비하세요."
 ];
 
 const jobCategoryLabels: Record<JobCategory, string> = {
@@ -106,10 +107,10 @@ export function WorkerJobDetail({ job, site }: WorkerJobDetailProps) {
           <p className="mt-1 text-3xl font-bold">{job.dailyWage.toLocaleString("ko-KR")}원</p>
         </div>
         <dl className="mt-4 grid gap-2 sm:grid-cols-2">
-          <InfoItem label="근무일" value={job.workDate} />
+          <InfoItem label="근무일" value={job.workDate} strong />
           <InfoItem label="근무 시간" value={`${job.startTime} - ${job.endTime}`} />
-          <InfoItem label="지역" value={regionLabels[job.region]} />
-          <InfoItem label="직종" value={jobCategoryLabels[job.category]} />
+          <InfoItem label="지역" value={regionLabels[job.region]} strong />
+          <InfoItem label="직종" value={jobCategoryLabels[job.category]} strong />
           <InfoItem label="모집인원" value={`${job.requiredWorkers}명`} />
           <InfoItem label="지급 조건" value={paymentOptionLabels[job.paymentOption]} />
         </dl>
@@ -124,7 +125,7 @@ export function WorkerJobDetail({ job, site }: WorkerJobDetailProps) {
           </dl>
         </section>
         <section className="rounded-xl border border-blue-100 bg-white p-4 shadow-lg shadow-blue-950/5 sm:p-5">
-          <h3 className="text-xl font-bold text-[#071B3A]">지원 전 확인사항</h3>
+          <h3 className="text-xl font-bold text-[#071B3A]">출근 전 확인할 정보</h3>
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-600">
             {checkItems.map((item) => (
               <li key={item} className="rounded-lg bg-blue-50 px-4 py-3">
@@ -132,20 +133,28 @@ export function WorkerJobDetail({ job, site }: WorkerJobDetailProps) {
               </li>
             ))}
           </ul>
-          <span className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-md bg-blue-700 px-5 text-sm font-bold text-white">
-            지원 전 정보 확인
-          </span>
+          <p className="mt-4 rounded-lg bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-600">
+            현재는 화면 예시입니다. 실제 지원 기능은 이후 단계에서 연결됩니다.
+          </p>
+          <Link
+            href="/worker/jobs"
+            className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-md bg-blue-700 px-5 text-sm font-bold text-white transition-colors hover:bg-blue-800"
+          >
+            일자리 목록으로 돌아가기
+          </Link>
         </section>
       </aside>
     </article>
   );
 }
 
-function InfoItem({ label, value }: { label: string; value: string }) {
+function InfoItem({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="rounded-lg bg-blue-50 px-3 py-3 sm:px-4">
       <dt className="text-xs font-semibold text-slate-500">{label}</dt>
-      <dd className="mt-1 font-bold text-[#071B3A]">{value}</dd>
+      <dd className={`mt-1 font-bold ${strong ? "text-blue-800" : "text-[#071B3A]"}`}>
+        {value}
+      </dd>
     </div>
   );
 }
