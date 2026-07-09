@@ -15,14 +15,14 @@ const dashboardStats = [
 const audienceCards = [
   {
     title: "건설 일자리를 찾는 근로자라면",
-    description: "가까운 현장, 직종, 일당, 근무일, 지급 조건을 한눈에 확인할 수 있습니다.",
+    description: "가까운 현장, 직종, 일당, 근무일을 먼저 확인하세요.",
     href: "/worker/jobs",
     cta: "일자리 화면 보기",
     highlighted: false
   },
   {
     title: "현장 인력이 필요한 현장소장이라면",
-    description: "필요한 직종과 인원, 지원자, 출근 예정자를 한 화면에서 확인할 수 있습니다.",
+    description: "필요 인원, 지원자, 출근 예정자를 한 화면에서 확인하세요.",
     href: "/company/dashboard",
     cta: "현장관리 화면 보기",
     highlighted: true
@@ -41,13 +41,14 @@ export function LandingHero() {
           <p className="inline-flex rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-bold text-blue-800 shadow-sm">
             경기·충청권 건설 일자리 준비 중
           </p>
-          <h1 className="mt-5 text-3xl font-bold leading-tight tracking-normal text-[#071B3A] sm:text-5xl lg:text-6xl">
+          <h1 className="mt-5 break-keep text-[2rem] font-bold leading-tight tracking-normal text-[#071B3A] sm:text-5xl lg:text-6xl">
             건설 현장 인력,
             <span className="block text-blue-700">이제 전화로 찾지 마세요.</span>
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
-            근로자는 가까운 현장을 찾고, 현장소장은 필요한 인원과 출근 현황을
-            한눈에 확인할 수 있도록 준비하고 있습니다.
+          <p className="mt-5 max-w-xl break-keep text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
+            근로자는 가까운 현장을 찾고,
+            <br className="sm:hidden" />
+            현장소장은 필요한 인원과 출근 현황을 확인할 수 있도록 구성했습니다.
           </p>
 
           <div className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -60,9 +61,9 @@ export function LandingHero() {
                     : "border-blue-100 bg-white text-[#071B3A]"
                 }`}
               >
-                <h2 className="text-lg font-bold leading-7">{card.title}</h2>
+                <h2 className="break-keep text-lg font-bold leading-7">{card.title}</h2>
                 <p
-                  className={`mt-3 text-sm leading-6 ${
+                  className={`mt-3 break-keep text-sm leading-6 ${
                     card.highlighted ? "text-blue-100" : "text-slate-600"
                   }`}
                 >
