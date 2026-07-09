@@ -1,6 +1,7 @@
 import { StatusBadge } from "@/components/common/StatusBadge";
 import type { ApplicationStatus } from "@/constants/applicationStatus";
 import type { JobCategory } from "@/constants/jobCategory";
+import type { PaymentOption } from "@/constants/paymentOption";
 import type { JobApplication } from "@/types/application";
 import type { Assignment } from "@/types/assignment";
 import type { JobPost } from "@/types/job";
@@ -16,7 +17,7 @@ type CompanyApplicantListProps = {
 };
 
 const applicationStatusLabels: Record<ApplicationStatus, string> = {
-  submitted: "지원 완료",
+  submitted: "확인 전",
   accepted: "출근 확정",
   rejected: "마감",
   cancelled: "취소"
@@ -31,6 +32,11 @@ const jobCategoryLabels: Record<JobCategory, string> = {
   painting: "도장",
   equipment: "장비",
   electrical: "전기"
+};
+
+const paymentOptionLabels: Record<PaymentOption, string> = {
+  same_day: "당일 지급",
+  weekly: "주급"
 };
 
 const workerNameById: Record<string, string> = {
@@ -97,9 +103,14 @@ export function CompanyApplicantList({
             </div>
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
               <InfoItem label="현장명" value={site ? siteNameById[site.id] ?? site.name : "확인 중"} />
+              <InfoItem label="근무일" value={job?.workDate ?? "확인 중"} strong />
               <InfoItem label="직종" value={job ? jobCategoryLabels[job.category] : "확인 중"} />
               <InfoItem label="지원 상태" value={applicationStatusLabels[application.status]} />
-              <InfoItem label="연락처" value={worker?.phone ?? "확인 중"} />
+              <InfoItem label="출근 확정 여부" value={assignment ? "출근 확정" : "확인 예정"} strong />
+              <InfoItem
+                label="지급 조건"
+                value={job ? paymentOptionLabels[job.paymentOption] : "확인 중"}
+              />
             </dl>
           </article>
         );
@@ -108,11 +119,13 @@ export function CompanyApplicantList({
   );
 }
 
-function InfoItem({ label, value }: { label: string; value: string }) {
+function InfoItem({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="rounded-lg bg-blue-50 px-3 py-3 sm:px-4">
       <dt className="text-xs font-semibold text-slate-500">{label}</dt>
-      <dd className="mt-1 font-bold text-[#071B3A]">{value}</dd>
+      <dd className={`mt-1 break-keep font-bold ${strong ? "text-blue-800" : "text-[#071B3A]"}`}>
+        {value}
+      </dd>
     </div>
   );
 }

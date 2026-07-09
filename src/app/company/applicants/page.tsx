@@ -15,7 +15,7 @@ export default function CompanyApplicantsPage() {
   return (
     <CompanyPageShell
       title="지원자 확인"
-      description="지원자와 출근 확정 상태를 확인하세요."
+      description="지원 상태와 출근 확정 여부를 구분해 확인하세요."
       activeKey="applicants"
     >
       <CompanySummaryCards
@@ -26,7 +26,7 @@ export default function CompanyApplicantsPage() {
             description: "현장에서 확인할 지원자입니다."
           },
           {
-            label: "출근 확정",
+            label: "출근 확정자",
             value: `${confirmedApplications.length}명`,
             description: "출근 예정자로 확정된 지원자입니다."
           },

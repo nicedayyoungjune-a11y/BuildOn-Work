@@ -116,15 +116,21 @@ export function CompanyDashboardOverview({
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {todayAttendance.map((record) => {
             const job = jobs.find((item) => item.id === record.jobPostId);
+            const isAbsent = record.status === "absent";
             const tone =
               record.status === "completed" || record.status === "checked_in"
                 ? "green"
-                : record.status === "absent"
+                : isAbsent
                   ? "red"
                   : "amber";
 
             return (
-              <article key={record.id} className="rounded-lg bg-blue-50 px-4 py-3">
+              <article
+                key={record.id}
+                className={`rounded-lg px-4 py-3 ${
+                  isAbsent ? "bg-red-50" : "bg-blue-50"
+                }`}
+              >
                 <h3 className="font-bold text-[#071B3A]">
                   {job ? jobTitleById[job.id] ?? job.title : "일자리 확인 중"}
                 </h3>

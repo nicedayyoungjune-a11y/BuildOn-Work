@@ -52,17 +52,20 @@ export function CompanyAttendanceList({
         const site = job ? sites.find((item) => item.id === job.siteId) : undefined;
         const worker = workers.find((item) => item.id === record.workerId);
         const assignment = assignments.find((item) => item.id === record.assignmentId);
+        const isAbsent = record.status === "absent";
         const tone =
           record.status === "completed" || record.status === "checked_in"
             ? "green"
-            : record.status === "absent"
+            : isAbsent
               ? "red"
               : "amber";
 
         return (
           <article
             key={record.id}
-            className="rounded-xl border border-blue-100 bg-white p-4 shadow-lg shadow-blue-950/5 sm:p-5"
+            className={`rounded-xl border p-4 shadow-lg shadow-blue-950/5 sm:p-5 ${
+              isAbsent ? "border-red-100 bg-red-50/60" : "border-blue-100 bg-white"
+            }`}
           >
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
@@ -71,6 +74,7 @@ export function CompanyAttendanceList({
                   <StatusBadge tone={assignment ? "green" : "amber"}>
                     {assignment ? "출근 예정자" : "확인 예정"}
                   </StatusBadge>
+                  {isAbsent ? <StatusBadge tone="red">확인 필요</StatusBadge> : null}
                 </div>
                 <h2 className="mt-3 text-xl font-bold text-[#071B3A]">
                   {worker ? workerNameById[worker.id] ?? worker.name : "근로자 확인 중"}
@@ -86,7 +90,7 @@ export function CompanyAttendanceList({
             </div>
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
               <InfoItem label="일자리" value={job ? jobTitleById[job.id] ?? job.title : "확인 중"} />
-              <InfoItem label="출근 상태" value={attendanceLabels[record.status]} />
+              <InfoItem label="출근 상태" value={attendanceLabels[record.status]} strong />
               <InfoItem
                 label="출근 시간"
                 value={
@@ -98,7 +102,7 @@ export function CompanyAttendanceList({
                     : "확인 전"
                 }
               />
-              <InfoItem label="근무 완료" value={record.completedAt ? "완료" : "확인 전"} />
+              <InfoItem label="근무 완료 여부" value={record.completedAt ? "근무 완료" : "확인 전"} />
             </dl>
           </article>
         );
@@ -107,11 +111,13 @@ export function CompanyAttendanceList({
   );
 }
 
-function InfoItem({ label, value }: { label: string; value: string }) {
+function InfoItem({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="rounded-lg bg-blue-50 px-3 py-3 sm:px-4">
       <dt className="text-xs font-semibold text-slate-500">{label}</dt>
-      <dd className="mt-1 font-bold text-[#071B3A]">{value}</dd>
+      <dd className={`mt-1 font-bold ${strong ? "text-blue-800" : "text-[#071B3A]"}`}>
+        {value}
+      </dd>
     </div>
   );
 }

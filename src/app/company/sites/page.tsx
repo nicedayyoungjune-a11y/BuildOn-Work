@@ -10,7 +10,7 @@ export default function CompanySitesPage() {
   return (
     <CompanyPageShell
       title="현장 목록"
-      description="등록된 현장과 필요한 직종을 확인하세요."
+      description="현장명, 지역, 필요한 직종과 진행 중인 일자리를 확인하세요."
       activeKey="sites"
     >
       <CompanySummaryCards
@@ -18,10 +18,10 @@ export default function CompanySitesPage() {
           {
             label: "등록된 현장",
             value: `${mockSites.length}곳`,
-            description: "현재 확인 가능한 현장입니다."
+            description: "화면 예시로 확인할 수 있는 현장입니다."
           },
           {
-            label: "등록된 일자리",
+            label: "진행 중인 일자리",
             value: `${mockJobs.length}건`,
             description: "현장별로 올라온 일자리입니다."
           },

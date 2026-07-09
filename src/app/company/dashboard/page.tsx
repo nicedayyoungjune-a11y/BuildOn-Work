@@ -11,8 +11,9 @@ export default function CompanyDashboardPage() {
   const neededWorkers = mockJobs.reduce((sum, job) => sum + job.requiredWorkers, 0);
   const scheduledWorkers = mockAssignments.length;
   const checkedInWorkers = mockAttendance.filter(
-    (record) => record.status === "checked_in" || record.status === "completed"
+    (record) => record.status === "checked_in"
   ).length;
+  const absentWorkers = mockAttendance.filter((record) => record.status === "absent").length;
 
   return (
     <CompanyPageShell
@@ -23,7 +24,7 @@ export default function CompanyDashboardPage() {
       <CompanySummaryCards
         items={[
           {
-            label: "오늘 필요 인원",
+            label: "오늘 필요한 인원",
             value: `${neededWorkers}명`,
             description: "등록된 일자리 기준으로 필요한 전체 인원입니다."
           },
@@ -40,7 +41,12 @@ export default function CompanyDashboardPage() {
           {
             label: "출근 완료",
             value: `${checkedInWorkers}명`,
-            description: "출근 완료 또는 근무 완료 인원입니다."
+            description: "현장 도착이 확인된 인원입니다."
+          },
+          {
+            label: "미출근",
+            value: `${absentWorkers}명`,
+            description: "출근 확인이 필요한 인원입니다."
           }
         ]}
       />

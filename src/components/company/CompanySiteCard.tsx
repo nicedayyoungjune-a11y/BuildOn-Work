@@ -74,23 +74,26 @@ export function CompanySiteCard({ site, jobs }: CompanySiteCardProps) {
         </div>
       </div>
       <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
-        <InfoItem label="현장소장" value={display?.managerName ?? site.managerName} />
-        <InfoItem label="오늘 필요 인원" value={`${neededWorkers}명`} />
+        <InfoItem label="현장 담당자" value={display?.managerName ?? site.managerName} />
+        <InfoItem label="오늘 필요한 인원" value={`${neededWorkers}명`} strong />
         <InfoItem
           label="필요 직종"
           value={categories.map((category) => jobCategoryLabels[category]).join(", ") || "확인 중"}
+          strong
         />
-        <InfoItem label="연락처" value={site.managerPhone} />
+        <InfoItem label="현장 주소" value={display?.address ?? site.address} />
       </dl>
     </article>
   );
 }
 
-function InfoItem({ label, value }: { label: string; value: string }) {
+function InfoItem({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="rounded-lg bg-blue-50 px-3 py-3 sm:px-4">
       <dt className="text-xs font-semibold text-slate-500">{label}</dt>
-      <dd className="mt-1 font-bold text-[#071B3A]">{value}</dd>
+      <dd className={`mt-1 break-keep font-bold ${strong ? "text-blue-800" : "text-[#071B3A]"}`}>
+        {value}
+      </dd>
     </div>
   );
 }

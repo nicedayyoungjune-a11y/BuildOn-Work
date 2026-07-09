@@ -13,7 +13,7 @@ export default function CompanyJobsPage() {
   return (
     <CompanyPageShell
       title="일자리 관리"
-      description="등록된 일자리의 모집 현황과 출근 확정 인원을 확인하세요."
+      description="모집인원, 지원자, 출근 확정자와 지급 조건을 일자리별로 확인하세요."
       activeKey="jobs"
     >
       <CompanySummaryCards
