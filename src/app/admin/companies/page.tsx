@@ -8,15 +8,16 @@ import { mockSites } from "@/data/mockSites";
 export default function AdminCompaniesPage() {
   return (
     <AdminPageShell
-      title="건설사 관리"
+      title="건설사 현황"
       description="건설사, 담당자, 등록 현장과 일자리 현황을 확인하세요."
+      activeKey="companies"
     >
       <AdminSummaryCards
         items={[
           {
             label: "전체 건설사",
             value: `${mockCompanies.length}곳`,
-            description: "등록된 건설사입니다."
+            description: "등록된 건설사 수입니다."
           },
           {
             label: "등록 현장",

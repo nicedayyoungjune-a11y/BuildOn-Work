@@ -16,6 +16,7 @@ export default function CompanyApplicantsPage() {
     <CompanyPageShell
       title="지원자 확인"
       description="지원자와 출근 확정 상태를 확인하세요."
+      activeKey="applicants"
     >
       <CompanySummaryCards
         items={[

@@ -18,6 +18,7 @@ export default function CompanyDashboardPage() {
     <CompanyPageShell
       title="현장관리"
       description="오늘 필요한 인원과 출근 현황을 한눈에 확인하세요."
+      activeKey="dashboard"
     >
       <CompanySummaryCards
         items={[

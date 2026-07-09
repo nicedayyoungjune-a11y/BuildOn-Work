@@ -10,14 +10,17 @@ import { mockSites } from "@/data/mockSites";
 import { mockWorkers } from "@/data/mockWorkers";
 
 export default function AdminDashboardPage() {
+  const scheduledAttendance = mockAttendance.filter((record) => record.status === "pending").length;
   const checkedIn = mockAttendance.filter(
     (record) => record.status === "checked_in" || record.status === "completed"
   ).length;
+  const pendingInquiries = mockInquiries.filter((inquiry) => inquiry.status !== "resolved").length;
 
   return (
     <AdminPageShell
       title="전체 현황"
-      description="근로자, 건설사, 현장, 일자리와 문의 현황을 확인하세요."
+      description="근로자, 건설사, 현장, 일자리, 문의 현황을 한눈에 확인하세요."
+      activeKey="dashboard"
     >
       <AdminSummaryCards
         items={[
@@ -34,12 +37,22 @@ export default function AdminDashboardPage() {
           {
             label: "등록 현장",
             value: `${mockSites.length}곳`,
-            description: "운영 중인 현장 수입니다."
+            description: "등록된 현장 수입니다."
           },
           {
-            label: "출근 완료",
-            value: `${checkedIn}명`,
-            description: "출근 완료 또는 근무 완료 인원입니다."
+            label: "등록 일자리",
+            value: `${mockJobs.length}건`,
+            description: "등록된 일자리 수입니다."
+          },
+          {
+            label: "지원 내역",
+            value: `${mockApplications.length}건`,
+            description: "근로자 지원 내역입니다."
+          },
+          {
+            label: "문의 접수",
+            value: `${mockInquiries.length}건`,
+            description: `처리 예정 ${pendingInquiries}건입니다.`
           }
         ]}
       />
@@ -49,6 +62,8 @@ export default function AdminDashboardPage() {
           applications={mockApplications}
           attendance={mockAttendance}
           inquiries={mockInquiries}
+          scheduledAttendance={scheduledAttendance}
+          checkedIn={checkedIn}
         />
       </div>
     </AdminPageShell>

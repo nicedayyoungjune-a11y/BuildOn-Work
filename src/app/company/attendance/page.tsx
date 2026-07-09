@@ -16,6 +16,7 @@ export default function CompanyAttendancePage() {
     <CompanyPageShell
       title="출근 현황"
       description="현장별 출근 예정자와 출근 완료 인원을 확인하세요."
+      activeKey="attendance"
     >
       <CompanySummaryCards
         items={[

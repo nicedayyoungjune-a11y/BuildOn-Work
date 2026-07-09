@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function LandingCta() {
   return (
     <section className="bg-[#071B3A] px-5 py-18 text-white sm:px-6 lg:px-8">
@@ -11,27 +13,27 @@ export function LandingCta() {
           건설인력 플랫폼을 준비하고 있습니다.
         </p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <a
-            href="#worker"
+          <Link
+            href="/worker/jobs"
             className="inline-flex min-h-12 items-center justify-center rounded-md bg-white px-6 text-base font-bold text-[#071B3A] shadow-lg shadow-blue-950/20 transition-colors hover:bg-blue-50"
           >
-            내 주변 일자리 찾기
-          </a>
-          <a
-            href="#company"
+            일자리 보기
+          </Link>
+          <Link
+            href="/company/dashboard"
             className="inline-flex min-h-12 items-center justify-center rounded-md bg-blue-600 px-6 text-base font-bold text-white shadow-lg shadow-blue-600/25 transition-colors hover:bg-blue-700"
           >
-            현장 인력 요청하기
-          </a>
-          <a
-            href="#faq"
+            현장관리 보기
+          </Link>
+          <Link
+            href="/admin/dashboard"
             className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/20 px-6 text-base font-bold text-white transition-colors hover:bg-white/10"
           >
-            파일럿 상담 문의하기
-          </a>
+            관리자 화면 보기
+          </Link>
         </div>
         <p className="mt-5 text-xs leading-5 text-blue-100/60">
-          현재 버튼은 화면 검토용 임시 CTA이며 실제 기능은 연결하지 않았습니다.
+          현재는 화면 구성 예시입니다. 실제 이용 기능은 이후 단계에서 연결됩니다.
         </p>
       </div>
     </section>

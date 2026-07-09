@@ -1,4 +1,5 @@
 import { StatusBadge } from "@/components/common/StatusBadge";
+import { EmptyState } from "@/components/common/EmptyState";
 import type { Inquiry } from "@/types/inquiry";
 
 type AdminInquiryListProps = {
@@ -8,7 +9,7 @@ type AdminInquiryListProps = {
 const inquiryStatusLabels: Record<Inquiry["status"], string> = {
   submitted: "접수 완료",
   in_progress: "처리 예정",
-  resolved: "확인 완료"
+  resolved: "답변 완료"
 };
 
 const userTypeLabels: Record<Inquiry["userType"], string> = {
@@ -30,12 +31,16 @@ const inquiryDisplayById: Record<string, { name: string; title: string; summary:
   },
   "inquiry-003": {
     name: "상담 요청 C",
-    title: "관리자 화면 문의",
-    summary: "관리자 화면에서 확인할 기본 통계 범위에 대한 문의입니다."
+    title: "운영 현황 문의",
+    summary: "운영자가 확인할 현황 범위에 대한 문의입니다."
   }
 };
 
 export function AdminInquiryList({ inquiries }: AdminInquiryListProps) {
+  if (inquiries.length === 0) {
+    return <EmptyState title="아직 접수된 문의가 없습니다." />;
+  }
+
   return (
     <section className="space-y-3 sm:space-y-4">
       {inquiries.map((inquiry) => {
@@ -55,7 +60,7 @@ export function AdminInquiryList({ inquiries }: AdminInquiryListProps) {
                   <StatusBadge tone="blue">{userTypeLabels[inquiry.userType]}</StatusBadge>
                 </div>
                 <h2 className="mt-3 text-xl font-bold text-[#071B3A] sm:text-2xl">
-                  {display?.title ?? "문의 확인 중"}
+                  {display?.title ?? "문의 확인 전"}
                 </h2>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
                   {display?.summary ?? inquiry.message}

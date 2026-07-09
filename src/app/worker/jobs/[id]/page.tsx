@@ -24,7 +24,8 @@ export default async function WorkerJobDetailPage({ params }: WorkerJobDetailPag
   return (
     <WorkerPageShell
       title="일자리 상세"
-      description="지원하기 전에 일당, 근무일, 출근 시간, 현장 주소를 확인하세요."
+      description="지원 전 일당, 근무일, 출근 시간, 현장 주소를 확인하세요."
+      activeKey="jobs"
     >
       {job ? (
         <WorkerJobDetail job={job} site={site} />

@@ -10,15 +10,16 @@ export default function AdminSitesPage() {
 
   return (
     <AdminPageShell
-      title="현장 관리"
-      description="전체 현장과 건설사, 담당자, 진행 일자리를 확인하세요."
+      title="현장 현황"
+      description="등록된 현장과 진행 중인 일자리 현황을 확인하세요."
+      activeKey="sites"
     >
       <AdminSummaryCards
         items={[
           {
             label: "전체 현장",
             value: `${mockSites.length}곳`,
-            description: "등록된 현장입니다."
+            description: "등록된 현장 수입니다."
           },
           {
             label: "진행 일자리",

@@ -14,6 +14,7 @@ export default function CompanyJobsPage() {
     <CompanyPageShell
       title="일자리 관리"
       description="등록된 일자리의 모집 현황과 출근 확정 인원을 확인하세요."
+      activeKey="jobs"
     >
       <CompanySummaryCards
         items={[

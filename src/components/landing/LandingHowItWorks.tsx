@@ -1,6 +1,6 @@
 import { LandingSectionTitle } from "./LandingSectionTitle";
 
-const workerSteps = ["원하는 직종과 지역 선택", "일자리 확인", "지원하기", "출근 확정 확인"];
+const workerSteps = ["원하는 직종과 지역 선택", "일자리 확인", "지원 전 정보 확인", "출근 확정 확인"];
 const companySteps = [
   "현장 등록",
   "일자리 등록",

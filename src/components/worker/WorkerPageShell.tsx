@@ -3,16 +3,23 @@ import Link from "next/link";
 type WorkerPageShellProps = {
   title: string;
   description: string;
+  activeKey: "jobs" | "applications" | "my";
   children: React.ReactNode;
 };
 
 const menuItems = [
-  { href: "/worker/jobs", label: "일자리 찾기" },
-  { href: "/worker/applications", label: "지원한 일자리" },
-  { href: "/worker/my", label: "내 정보" }
+  { href: "/worker/jobs", label: "일자리 찾기", key: "jobs" },
+  { href: "/worker/applications", label: "지원한 일자리", key: "applications" },
+  { href: "/worker/my", label: "내 정보", key: "my" },
+  { href: "/", label: "처음으로", key: "home" }
 ];
 
-export function WorkerPageShell({ title, description, children }: WorkerPageShellProps) {
+export function WorkerPageShell({
+  title,
+  description,
+  activeKey,
+  children
+}: WorkerPageShellProps) {
   return (
     <main className="min-h-screen bg-[#F3F7FF] px-4 py-5 text-[#071B3A] sm:px-6 sm:py-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
@@ -29,12 +36,17 @@ export function WorkerPageShell({ title, description, children }: WorkerPageShel
                 {description}
               </p>
             </div>
-            <nav aria-label="근로자 메뉴" className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap">
+            <nav aria-label="근로자 메뉴" className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
               {menuItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="inline-flex min-h-10 items-center justify-center rounded-md border border-blue-100 bg-blue-50 px-3 text-center text-xs font-bold text-blue-800 transition-colors hover:bg-blue-100 sm:px-4 sm:text-sm"
+                  aria-current={item.key === activeKey ? "page" : undefined}
+                  className={`inline-flex min-h-11 items-center justify-center rounded-md border px-3 text-center text-xs font-bold leading-tight transition-colors sm:min-h-10 sm:px-4 sm:text-sm ${
+                    item.key === activeKey
+                      ? "border-[#0B1F3A] bg-[#0B1F3A] text-white shadow-sm shadow-blue-950/20"
+                      : "border-blue-100 bg-blue-50 text-blue-800 hover:bg-blue-100"
+                  }`}
                 >
                   {item.label}
                 </Link>

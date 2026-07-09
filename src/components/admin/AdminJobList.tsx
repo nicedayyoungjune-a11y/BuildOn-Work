@@ -1,4 +1,5 @@
 import { StatusBadge } from "@/components/common/StatusBadge";
+import { EmptyState } from "@/components/common/EmptyState";
 import type { JobApplication } from "@/types/application";
 import type { Assignment } from "@/types/assignment";
 import type { CompanyProfile } from "@/types/company";
@@ -49,6 +50,10 @@ const statusLabels: Record<string, string> = {
 };
 
 export function AdminJobList({ jobs, sites, companies, applications, assignments }: AdminJobListProps) {
+  if (jobs.length === 0) {
+    return <EmptyState title="아직 등록된 일자리가 없습니다." />;
+  }
+
   return (
     <section className="space-y-3 sm:space-y-4">
       {jobs.map((job) => {
@@ -76,7 +81,7 @@ export function AdminJobList({ jobs, sites, companies, applications, assignments
                   {jobTitleById[job.id] ?? job.title}
                 </h2>
                 <p className="mt-2 text-sm font-semibold text-blue-700">
-                  {site ? siteNameById[site.id] ?? site.name : "현장 확인 중"}
+                  {site ? siteNameById[site.id] ?? site.name : "현장 확인 전"}
                 </p>
               </div>
               <div className="rounded-xl bg-[#0B1F3A] px-4 py-3 text-white sm:text-right">
@@ -85,7 +90,7 @@ export function AdminJobList({ jobs, sites, companies, applications, assignments
               </div>
             </div>
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
-              <InfoItem label="건설사" value={company ? companyNameById[company.id] ?? company.companyName : "확인 중"} />
+              <InfoItem label="건설사" value={company ? companyNameById[company.id] ?? company.companyName : "확인 전"} />
               <InfoItem label="근무일" value={job.workDate} />
               <InfoItem label="직종" value={categoryLabels[job.category] ?? job.category} />
               <InfoItem label="지원자" value={`${jobApplications.length}명`} />

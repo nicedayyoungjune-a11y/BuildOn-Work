@@ -11,6 +11,7 @@ export default function WorkerJobsPage() {
     <WorkerPageShell
       title="일자리 찾기"
       description="가까운 현장과 원하는 직종의 일자리를 확인하세요."
+      activeKey="jobs"
     >
       <WorkerSummaryCards
         items={[

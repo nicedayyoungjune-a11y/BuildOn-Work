@@ -80,6 +80,30 @@
 - [x] Use existing mock data only, without authentication, authorization, DB, API, edit, delete, approval, status change, or reply actions.
 - [x] Keep admin screens focused on operational visibility for workers, companies, sites, jobs, applications, attendance, inquiries, and payment option status.
 
+## Phase 12: Admin Screen Review
+
+- [x] Review admin dashboard, workers, companies, sites, jobs, applications, and inquiries screens.
+- [x] Refine admin screen wording for platform operators.
+- [x] Improve information priority for workers, companies, sites, jobs, applications, attendance, inquiries, and items that need checking.
+- [x] Improve status badge wording, no-content guidance, mobile card spacing, and overall readability.
+- [x] Keep the work limited to static screens without new files, new data, integrations, events, or real actions.
+
+## Phase 13: Screen Connection Review
+
+- [x] Review landing, worker, company, and admin screen links.
+- [x] Connect landing page links to worker jobs, company dashboard, and admin dashboard.
+- [x] Add simple area menus for worker, company, and admin screens.
+- [x] Add current-location emphasis to worker, company, and admin menus.
+- [x] Keep the work limited to static links without authentication, events, state, integrations, or real actions.
+
+## Phase 14: First QA And Pre-Deployment Review
+
+- [x] Review all landing, worker, company, and admin routes before deployment.
+- [x] Check landing links, area menus, static screen roles, and current-location emphasis.
+- [x] Review visible wording for developer-style terms and real-action misunderstandings.
+- [x] Run lint, typecheck, build, local route checks, and Git status review.
+- [x] Keep the work limited to QA and minimal copy adjustments without new files, new data, integrations, events, or real actions.
+
 ## Later Phases
 
 - [ ] Add DB connection only when approved.

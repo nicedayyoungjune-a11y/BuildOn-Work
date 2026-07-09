@@ -9,7 +9,8 @@ export default function AdminInquiriesPage() {
   return (
     <AdminPageShell
       title="문의 내역"
-      description="문의 유형, 문의자, 접수일과 처리 상태를 확인하세요."
+      description="접수된 문의와 처리 예정 항목을 확인하세요."
+      activeKey="inquiries"
     >
       <AdminSummaryCards
         items={[
@@ -24,9 +25,9 @@ export default function AdminInquiriesPage() {
             description: "아직 확인이 필요한 문의입니다."
           },
           {
-            label: "확인 완료",
+            label: "답변 완료",
             value: `${mockInquiries.length - pendingInquiries.length}건`,
-            description: "확인이 끝난 문의입니다."
+            description: "답변이 끝난 문의입니다."
           }
         ]}
       />

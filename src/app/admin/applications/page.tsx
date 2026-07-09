@@ -15,7 +15,8 @@ export default function AdminApplicationsPage() {
   return (
     <AdminPageShell
       title="지원 내역"
-      description="전체 지원 내역과 출근 확정 상태를 확인하세요."
+      description="근로자의 지원 현황과 출근 확정 상태를 확인하세요."
+      activeKey="applications"
     >
       <AdminSummaryCards
         items={[

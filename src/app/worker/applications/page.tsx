@@ -31,6 +31,7 @@ export default function WorkerApplicationsPage() {
     <WorkerPageShell
       title="지원한 일자리"
       description="지원한 일자리와 출근 확정 여부를 한눈에 확인하세요."
+      activeKey="applications"
     >
       <WorkerSummaryCards
         items={[

@@ -9,6 +9,8 @@ type AdminDashboardOverviewProps = {
   applications: JobApplication[];
   attendance: AttendanceRecord[];
   inquiries: Inquiry[];
+  scheduledAttendance: number;
+  checkedIn: number;
 };
 
 const jobTitleById: Record<string, string> = {
@@ -20,7 +22,7 @@ const jobTitleById: Record<string, string> = {
 const inquiryStatusLabels: Record<Inquiry["status"], string> = {
   submitted: "접수 완료",
   in_progress: "처리 예정",
-  resolved: "확인 완료"
+  resolved: "답변 완료"
 };
 
 const attendanceLabels: Record<AttendanceRecord["status"], string> = {
@@ -34,11 +36,18 @@ export function AdminDashboardOverview({
   jobs,
   applications,
   attendance,
-  inquiries
+  inquiries,
+  scheduledAttendance,
+  checkedIn
 }: AdminDashboardOverviewProps) {
   const recentJobs = jobs.slice(0, 3);
   const recentInquiries = inquiries.slice(0, 3);
   const recentAttendance = attendance.slice(0, 4);
+  const pendingItems = [
+    `출근 예정자 ${scheduledAttendance}명`,
+    `출근 완료 ${checkedIn}명`,
+    `확인이 필요한 문의 ${inquiries.filter((inquiry) => inquiry.status !== "resolved").length}건`
+  ];
 
   return (
     <div className="grid gap-5 lg:grid-cols-[1fr_1fr]">
@@ -46,7 +55,7 @@ export function AdminDashboardOverview({
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-bold text-blue-700">최근 일자리</p>
-            <h2 className="mt-2 text-2xl font-bold text-[#071B3A]">등록 일자리 요약</h2>
+            <h2 className="mt-2 text-2xl font-bold text-[#071B3A]">최근 등록 일자리</h2>
           </div>
           <StatusBadge tone="blue">{jobs.length}건</StatusBadge>
         </div>
@@ -77,7 +86,7 @@ export function AdminDashboardOverview({
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-bold text-blue-700">문의 내역</p>
-            <h2 className="mt-2 text-2xl font-bold text-[#071B3A]">최근 문의 요약</h2>
+            <h2 className="mt-2 text-2xl font-bold text-[#071B3A]">최근 문의</h2>
           </div>
           <StatusBadge tone="blue">{inquiries.length}건</StatusBadge>
         </div>
@@ -104,7 +113,7 @@ export function AdminDashboardOverview({
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-bold text-blue-700">출근 현황</p>
-            <h2 className="mt-2 text-2xl font-bold text-[#071B3A]">최근 출근 상태</h2>
+            <h2 className="mt-2 text-2xl font-bold text-[#071B3A]">출근 예정과 완료 현황</h2>
           </div>
           <StatusBadge tone="blue">{attendance.length}건</StatusBadge>
         </div>
@@ -123,6 +132,20 @@ export function AdminDashboardOverview({
           ))}
         </div>
       </section>
+
+      <section className="rounded-xl border border-blue-100 bg-white p-4 shadow-lg shadow-blue-950/5 sm:p-5 lg:col-span-2">
+        <div>
+          <p className="text-sm font-bold text-blue-700">확인 항목</p>
+          <h2 className="mt-2 text-2xl font-bold text-[#071B3A]">확인이 필요한 항목</h2>
+        </div>
+        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          {pendingItems.map((item) => (
+            <div key={item} className="rounded-lg bg-blue-50 px-4 py-3">
+              <p className="text-sm font-bold text-[#071B3A]">{item}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
@@ -131,7 +154,7 @@ function inquiryTitle(id: string) {
   const titles: Record<string, string> = {
     "inquiry-001": "근로자 상담 문의",
     "inquiry-002": "현장 인력 문의",
-    "inquiry-003": "관리자 화면 문의"
+    "inquiry-003": "운영 현황 문의"
   };
 
   return titles[id] ?? "문의 확인 중";

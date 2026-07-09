@@ -1,4 +1,5 @@
 import { StatusBadge } from "@/components/common/StatusBadge";
+import { EmptyState } from "@/components/common/EmptyState";
 import type { JobApplication } from "@/types/application";
 import type { Assignment } from "@/types/assignment";
 import type { JobPost } from "@/types/job";
@@ -51,6 +52,10 @@ export function AdminApplicationList({
   sites,
   workers
 }: AdminApplicationListProps) {
+  if (applications.length === 0) {
+    return <EmptyState title="아직 지원 내역이 없습니다." />;
+  }
+
   return (
     <section className="space-y-3 sm:space-y-4">
       {applications.map((application) => {
@@ -75,10 +80,10 @@ export function AdminApplicationList({
                   </StatusBadge>
                 </div>
                 <h2 className="mt-3 text-xl font-bold text-[#071B3A] sm:text-2xl">
-                  {worker ? workerNameById[worker.id] ?? worker.name : "지원자 확인 중"}
+                  {worker ? workerNameById[worker.id] ?? worker.name : "지원자 확인 전"}
                 </h2>
                 <p className="mt-2 text-sm font-semibold text-blue-700">
-                  {job ? jobTitleById[job.id] ?? job.title : "일자리 확인 중"}
+                  {job ? jobTitleById[job.id] ?? job.title : "일자리 확인 전"}
                 </p>
               </div>
               <div className="rounded-xl bg-[#0B1F3A] px-4 py-3 text-white sm:text-right">
@@ -89,10 +94,10 @@ export function AdminApplicationList({
               </div>
             </div>
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
-              <InfoItem label="현장명" value={site ? siteNameById[site.id] ?? site.name : "확인 중"} />
-              <InfoItem label="직종" value={job ? categoryLabels[job.category] ?? job.category : "확인 중"} />
+              <InfoItem label="현장명" value={site ? siteNameById[site.id] ?? site.name : "확인 전"} />
+              <InfoItem label="직종" value={job ? categoryLabels[job.category] ?? job.category : "확인 전"} />
               <InfoItem label="지원 상태" value={applicationStatusLabels[application.status]} />
-              <InfoItem label="근무일" value={job?.workDate ?? "확인 중"} />
+              <InfoItem label="근무일" value={job?.workDate ?? "확인 전"} />
             </dl>
           </article>
         );

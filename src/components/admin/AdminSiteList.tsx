@@ -1,4 +1,5 @@
 import { StatusBadge } from "@/components/common/StatusBadge";
+import { EmptyState } from "@/components/common/EmptyState";
 import type { CompanyProfile } from "@/types/company";
 import type { JobPost } from "@/types/job";
 import type { Site } from "@/types/site";
@@ -45,6 +46,10 @@ const categoryLabels: Record<string, string> = {
 };
 
 export function AdminSiteList({ sites, companies, jobs }: AdminSiteListProps) {
+  if (sites.length === 0) {
+    return <EmptyState title="아직 등록된 현장이 없습니다." />;
+  }
+
   return (
     <section className="space-y-3 sm:space-y-4">
       {sites.map((site) => {
@@ -60,7 +65,7 @@ export function AdminSiteList({ sites, companies, jobs }: AdminSiteListProps) {
           >
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <StatusBadge tone="blue">{regionLabels[site.region] ?? "지역 확인"}</StatusBadge>
+                <StatusBadge tone="blue">{regionLabels[site.region] ?? "지역 확인 전"}</StatusBadge>
                 <h2 className="mt-3 text-xl font-bold text-[#071B3A] sm:text-2xl">
                   {display?.name ?? site.name}
                 </h2>
@@ -74,9 +79,9 @@ export function AdminSiteList({ sites, companies, jobs }: AdminSiteListProps) {
               </div>
             </div>
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
-              <InfoItem label="건설사" value={company ? companyNameById[company.id] ?? company.companyName : "확인 중"} />
+              <InfoItem label="건설사" value={company ? companyNameById[company.id] ?? company.companyName : "확인 전"} />
               <InfoItem label="담당자" value={display?.managerName ?? site.managerName} />
-              <InfoItem label="필요 직종" value={categories.map((category) => categoryLabels[category] ?? category).join(", ") || "확인 중"} />
+              <InfoItem label="필요 직종" value={categories.map((category) => categoryLabels[category] ?? category).join(", ") || "등록된 일자리 없음"} />
               <InfoItem label="연락처" value={site.managerPhone} />
             </dl>
           </article>

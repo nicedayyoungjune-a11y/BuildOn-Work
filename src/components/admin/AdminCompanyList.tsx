@@ -1,4 +1,5 @@
 import { StatusBadge } from "@/components/common/StatusBadge";
+import { EmptyState } from "@/components/common/EmptyState";
 import type { CompanyProfile } from "@/types/company";
 import type { JobPost } from "@/types/job";
 import type { Site } from "@/types/site";
@@ -21,6 +22,10 @@ const jobTitleById: Record<string, string> = {
 };
 
 export function AdminCompanyList({ companies, sites, jobs }: AdminCompanyListProps) {
+  if (companies.length === 0) {
+    return <EmptyState title="아직 등록된 건설사가 없습니다." />;
+  }
+
   return (
     <section className="space-y-3 sm:space-y-4">
       {companies.map((company) => {
@@ -52,7 +57,7 @@ export function AdminCompanyList({ companies, sites, jobs }: AdminCompanyListPro
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
               <InfoItem label="연락처" value={company.phone} />
               <InfoItem label="등록 일자리" value={`${companyJobs.length}건`} />
-              <InfoItem label="최근 일자리" value={recentJob ? jobTitleById[recentJob.id] ?? recentJob.title : "확인 중"} />
+              <InfoItem label="최근 일자리" value={recentJob ? jobTitleById[recentJob.id] ?? recentJob.title : "아직 등록된 일자리가 없습니다."} />
               <InfoItem label="운영 지역" value={`${company.regions.length}곳`} />
             </dl>
           </article>

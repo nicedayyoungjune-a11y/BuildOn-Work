@@ -133,7 +133,7 @@ export function WorkerJobDetail({ job, site }: WorkerJobDetailProps) {
             ))}
           </ul>
           <span className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-md bg-blue-700 px-5 text-sm font-bold text-white">
-            지원하기
+            지원 전 정보 확인
           </span>
         </section>
       </aside>

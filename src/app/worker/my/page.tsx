@@ -16,6 +16,7 @@ export default function WorkerMyPage() {
     <WorkerPageShell
       title="내 정보"
       description="이름, 연락처, 선호 직종, 선호 지역, 지급 조건을 확인하세요."
+      activeKey="my"
     >
       {worker ? (
         <WorkerProfileCard worker={worker} recentApplications={recentApplications} />

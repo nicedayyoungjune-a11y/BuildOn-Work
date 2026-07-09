@@ -1,4 +1,5 @@
 import { StatusBadge } from "@/components/common/StatusBadge";
+import { EmptyState } from "@/components/common/EmptyState";
 import type { JobApplication } from "@/types/application";
 import type { WorkerProfile } from "@/types/worker";
 
@@ -34,6 +35,10 @@ const paymentLabels: Record<string, string> = {
 };
 
 export function AdminWorkerList({ workers, applications }: AdminWorkerListProps) {
+  if (workers.length === 0) {
+    return <EmptyState title="아직 등록된 근로자가 없습니다." />;
+  }
+
   return (
     <section className="space-y-3 sm:space-y-4">
       {workers.map((worker) => {
@@ -55,7 +60,7 @@ export function AdminWorkerList({ workers, applications }: AdminWorkerListProps)
                 <p className="mt-2 text-sm font-semibold text-blue-700">{worker.phone}</p>
               </div>
               <div className="rounded-xl bg-[#0B1F3A] px-4 py-3 text-white sm:text-right">
-                <p className="text-xs font-semibold text-blue-100">지원 내역</p>
+                <p className="text-xs font-semibold text-blue-100">최근 지원 내역</p>
                 <p className="mt-1 text-2xl font-bold">{workerApplications.length}건</p>
               </div>
             </div>

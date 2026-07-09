@@ -1,9 +1,12 @@
 type EmptyStateProps = {
   title: string;
-  description: string;
+  description?: string;
 };
 
-export function EmptyState({ title, description }: EmptyStateProps) {
+export function EmptyState({
+  title,
+  description = "등록되면 이곳에서 확인할 수 있습니다."
+}: EmptyStateProps) {
   return (
     <div className="rounded-xl border border-blue-100 bg-white p-6 text-center shadow-sm shadow-blue-950/5 sm:p-8">
       <h2 className="text-xl font-bold text-[#071B3A]">{title}</h2>

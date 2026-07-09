@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const requestItems = [
   { label: "보통인부", status: "지원자 확인" },
   { label: "철근 보조", status: "출근 예정" },
@@ -43,18 +45,24 @@ export function LandingHero() {
             </span>
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a
-              href="#worker"
+            <Link
+              href="/worker/jobs"
               className="inline-flex min-h-12 items-center justify-center rounded-md bg-[#0B1F3A] px-6 text-base font-bold text-white shadow-lg shadow-blue-950/20 transition-colors hover:bg-[#12315C]"
             >
-              내 주변 일자리 찾기
-            </a>
-            <a
-              href="#company"
+              일자리 보기
+            </Link>
+            <Link
+              href="/company/dashboard"
               className="inline-flex min-h-12 items-center justify-center rounded-md bg-blue-700 px-6 text-base font-bold text-white shadow-lg shadow-blue-700/20 transition-colors hover:bg-blue-800"
             >
-              현장 인력 요청하기
-            </a>
+              현장관리 보기
+            </Link>
+            <Link
+              href="/admin/dashboard"
+              className="inline-flex min-h-12 items-center justify-center rounded-md border border-blue-200 bg-white px-6 text-base font-bold text-blue-800 shadow-sm transition-colors hover:bg-blue-50"
+            >
+              관리자 화면 보기
+            </Link>
           </div>
         </div>
 

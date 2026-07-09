@@ -12,8 +12,9 @@ export default function AdminJobsPage() {
 
   return (
     <AdminPageShell
-      title="일자리 관리"
-      description="전체 일자리와 지원자, 출근 확정 인원을 확인하세요."
+      title="일자리 현황"
+      description="등록된 일자리와 모집, 출근 확정 현황을 확인하세요."
+      activeKey="jobs"
     >
       <AdminSummaryCards
         items={[

@@ -9,25 +9,26 @@ export default function AdminWorkersPage() {
 
   return (
     <AdminPageShell
-      title="근로자 관리"
-      description="근로자 기본 정보와 최근 지원 내역을 확인하세요."
+      title="근로자 현황"
+      description="등록된 근로자와 선호 직종, 최근 지원 내역을 확인하세요."
+      activeKey="workers"
     >
       <AdminSummaryCards
         items={[
           {
             label: "전체 근로자",
             value: `${mockWorkers.length}명`,
-            description: "등록된 근로자입니다."
+            description: "등록된 근로자 수입니다."
           },
           {
             label: "지원 내역",
             value: `${mockApplications.length}건`,
-            description: "전체 지원 내역입니다."
+            description: "근로자 지원 내역입니다."
           },
           {
             label: "경력 근로자",
             value: `${experiencedWorkers.length}명`,
-            description: "3년 이상 경력 근로자입니다."
+            description: "3년 이상 경력자입니다."
           }
         ]}
       />

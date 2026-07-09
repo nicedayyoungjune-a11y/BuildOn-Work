@@ -11,6 +11,7 @@ export default function CompanySitesPage() {
     <CompanyPageShell
       title="현장 목록"
       description="등록된 현장과 필요한 직종을 확인하세요."
+      activeKey="sites"
     >
       <CompanySummaryCards
         items={[
