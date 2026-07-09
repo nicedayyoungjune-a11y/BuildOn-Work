@@ -104,6 +104,14 @@
 - [x] Run lint, typecheck, build, local route checks, and Git status review.
 - [x] Keep the work limited to QA and minimal copy adjustments without new files, new data, integrations, events, or real actions.
 
+## Phase 22: Final Service Flow QA And Demo Scenario
+
+- [x] Review the full landing, worker, company, and admin demo flow.
+- [x] Create `docs/DEMO_SCENARIO.md` for customer, partner, developer, and internal team demos.
+- [x] Clarify that the current product is a screen-based MVP before real feature connections.
+- [x] Record demo talking points, cautions, next development candidates, and a demo checklist.
+- [x] Keep the work limited to documentation without screen code, new features, integrations, or real actions.
+
 ## Later Phases
 
 - [ ] Add DB connection only when approved.
