@@ -5,7 +5,7 @@ import { createBrowserClient } from "@supabase/ssr";
 import { getSupabaseConfig } from "./config";
 
 export function createClientSupabaseClient() {
-  const { url, anonKey } = getSupabaseConfig();
+  const { url, publishableKey } = getSupabaseConfig();
 
-  return createBrowserClient(url, anonKey);
+  return createBrowserClient(url, publishableKey);
 }

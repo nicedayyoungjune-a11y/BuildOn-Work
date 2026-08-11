@@ -4,10 +4,10 @@ import { cookies } from "next/headers";
 import { getSupabaseConfig } from "./config";
 
 export async function createServerSupabaseClient() {
-  const { url, anonKey } = getSupabaseConfig();
+  const { url, publishableKey } = getSupabaseConfig();
   const cookieStore = await cookies();
 
-  return createServerClient(url, anonKey, {
+  return createServerClient(url, publishableKey, {
     cookies: {
       getAll() {
         return cookieStore.getAll();

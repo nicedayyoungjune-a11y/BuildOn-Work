@@ -20,7 +20,7 @@ Copy `.env.example` to `.env.local` and fill:
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 ```
 
 Do not commit `.env.local`.
@@ -72,7 +72,7 @@ After a real Supabase project is available:
 
 ## Security Notes
 
-- Only public anon keys should use the `NEXT_PUBLIC_` prefix.
+- Only public publishable keys should use the `NEXT_PUBLIC_` prefix.
 - Do not commit service role keys.
 - Do not collect bank account information in Phase 1.
 - Do not implement automatic referral payout.
