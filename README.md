@@ -28,6 +28,28 @@ The long-term goal is to become a miso.kr-like platform in the construction labo
 
 ## Current Repository Status
 
-This repository currently contains project standard documents only.
+This repository currently contains:
 
-Application scaffolding, source code, UI components, mock data, TypeScript files, Supabase, database, authentication, and authorization are intentionally not created yet.
+- Project standard and planning documents
+- A screen-based MVP built with static mock data
+- Landing, worker, company, and admin screens
+- Post-MVP function scope and implementation planning documents
+
+The current product is still not connected to real DB, authentication, authorization, Supabase, notifications, payments, remittance, settlement, or contract automation.
+
+## Next Development Direction
+
+The next approved planning sequence is:
+
+1. Confirm real function scope.
+2. Confirm data model plan.
+3. Confirm authentication and role plan.
+4. Confirm implementation phases.
+5. Start DB, authentication, authorization, or Supabase setup only after explicit approval.
+
+See:
+
+- `docs/FUNCTION_SCOPE.md`
+- `docs/DATA_MODEL_PLAN.md`
+- `docs/AUTH_ROLE_PLAN.md`
+- `docs/IMPLEMENTATION_PHASES.md`

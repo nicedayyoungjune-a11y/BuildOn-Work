@@ -112,8 +112,20 @@
 - [x] Record demo talking points, cautions, next development candidates, and a demo checklist.
 - [x] Keep the work limited to documentation without screen code, new features, integrations, or real actions.
 
+## Phase 23: Real Function Scope Definition
+
+- [x] Review post-MVP development direction.
+- [x] Create `docs/FUNCTION_SCOPE.md`.
+- [x] Split the first real-function phase into Phase 1-A core data flow and Phase 1-B site operation flow.
+- [x] Define 2nd phase, legal/compliance phase, long-term features, and explicit exclusions.
+- [x] Define initial role boundaries, core status values, referral policy, notification policy, and privacy cautions.
+- [x] Keep the work limited to documentation without DB, authentication, authorization, Supabase, integrations, or application code.
+
 ## Later Phases
 
+- [x] Create `docs/DATA_MODEL_PLAN.md` before DB or Supabase implementation.
+- [x] Create `docs/AUTH_ROLE_PLAN.md` before authentication or authorization implementation.
+- [x] Create `docs/IMPLEMENTATION_PHASES.md` before coding real-function phases.
 - [ ] Add DB connection only when approved.
 - [ ] Add authentication only when approved.
 - [ ] Add authorization only when approved.
