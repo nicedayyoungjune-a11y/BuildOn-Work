@@ -139,3 +139,14 @@
 - [ ] Apply migrations to the real Supabase project.
 - [ ] Generate database TypeScript types from the real Supabase schema.
 - [ ] Implement worker signup and login.
+
+## Phase 27: Production Domain Setup
+
+- [x] Confirm production domain: `wokerin.co.kr`.
+- [x] Add `docs/DOMAIN_SETUP.md`.
+- [ ] Add `wokerin.co.kr` to the Vercel project.
+- [ ] Add `www.wokerin.co.kr` to the Vercel project.
+- [ ] Configure DNS A record for apex domain.
+- [ ] Configure DNS CNAME record for `www`.
+- [ ] Verify Vercel domain status and SSL certificate.
+- [ ] Confirm production site loads through the custom domain.
