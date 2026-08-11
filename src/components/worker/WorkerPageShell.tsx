@@ -53,6 +53,18 @@ export function WorkerPageShell({
               ))}
             </nav>
           </div>
+          <div className="mt-4 rounded-lg border border-blue-100 bg-blue-50 p-3 text-sm leading-6 text-slate-700">
+            <span className="font-bold text-[#071B3A]">
+              근로자 가입과 로그인 화면을 미리 확인할 수 있습니다.
+            </span>{" "}
+            <Link href="/worker/signup" className="font-bold text-blue-700 hover:text-blue-900">
+              회원가입 화면 보기
+            </Link>
+            <span className="px-2 text-blue-200">|</span>
+            <Link href="/worker/login" className="font-bold text-blue-700 hover:text-blue-900">
+              로그인 화면 보기
+            </Link>
+          </div>
         </header>
         <div className="mt-5 sm:mt-6">{children}</div>
       </div>

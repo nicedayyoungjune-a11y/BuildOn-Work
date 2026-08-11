@@ -129,6 +129,15 @@
 - [x] Define signup input fields, referral storage policy, login flow, RLS/security criteria, admin referral review direction, and first implementation boundaries.
 - [x] Keep the work limited to documentation without signup/login pages, Supabase Auth calls, DB insert code, API routes, middleware, mock data changes, or migrations.
 
+## Phase 25: Worker Signup/Login UI First Pass
+
+- [x] Create `/worker/signup` as a static worker signup UI preview.
+- [x] Create `/worker/login` as a static worker login UI preview.
+- [x] Add worker signup input groups for basic information, job preferences, and referral information.
+- [x] Add worker login input fields and guidance that real login is not connected yet.
+- [x] Add lightweight worker-screen links to the signup and login preview screens.
+- [x] Keep real Auth connection, data storage, API routes, middleware, protected routes, mock data changes, and migrations for later phases.
+
 ## Later Phases
 
 - [x] Create `docs/DATA_MODEL_PLAN.md` before DB or Supabase implementation.
