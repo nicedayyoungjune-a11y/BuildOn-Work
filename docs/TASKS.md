@@ -147,7 +147,7 @@
 - [x] Add `docs/DOMAIN_SETUP.md`.
 - [x] Add `www.workerin.co.kr` to the Vercel project.
 - [x] Add `workerin.co.kr` to the Vercel project.
-- [x] Configure DNS A record for apex domain.
-- [x] Configure DNS CNAME record for `www`.
+- [ ] Configure DNS A record for apex domain to a HTTPS-ready Vercel endpoint.
+- [ ] Configure DNS CNAME record for `www` to a HTTPS-ready Vercel endpoint.
 - [ ] Verify Vercel domain status and SSL certificate.
 - [ ] Confirm production site loads through the custom domain.

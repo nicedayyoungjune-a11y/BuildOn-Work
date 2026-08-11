@@ -18,8 +18,8 @@ Confirmed domains:
 
 Current verification notes:
 
-- `workerin.co.kr` currently resolves to a Vercel IP address.
-- `www.workerin.co.kr` currently resolves through a Vercel DNS CNAME.
+- `workerin.co.kr` currently resolves to `216.150.1.1`, but HTTPS port 443 does not connect.
+- `www.workerin.co.kr` currently resolves through `da46417babab4bc3.vercel-dns-016.com`, but HTTPS port 443 does not connect.
 - The latest Vercel production deployment includes `www.workerin.co.kr` and `workerin.co.kr` as aliases.
 - HTTPS requests to both custom domains did not connect successfully from the local verification environment yet.
 
@@ -66,14 +66,23 @@ Current observed DNS values:
 | `@` | `A` | `216.150.1.1` |
 | `www` | `CNAME` | `da46417babab4bc3.vercel-dns-016.com` |
 
-Because Vercel can provide project-specific DNS values, keep the current DNS values if Vercel marks them as valid in the dashboard.
+Because the current observed values do not accept HTTPS connections, verify them in the Vercel dashboard. If Vercel does not mark them as valid, change the records to the required Vercel values above.
+
+## Current Action Required
+
+At the DNS provider, confirm or update:
+
+- `workerin.co.kr` apex `A` record should point to Vercel's required apex value.
+- `www.workerin.co.kr` `CNAME` should point to Vercel's required CNAME value.
+- Remove stale or conflicting A/CNAME records for the same hosts.
+- After updating DNS, wait for propagation and re-run HTTPS verification.
 
 ## Verification Checklist
 
 After DNS is configured:
 
-- [x] `workerin.co.kr` resolves to Vercel.
-- [x] `www.workerin.co.kr` resolves to Vercel.
+- [ ] `workerin.co.kr` resolves to a Vercel HTTPS-ready endpoint.
+- [ ] `www.workerin.co.kr` resolves to a Vercel HTTPS-ready endpoint.
 - [x] Vercel production deployment includes both custom domain aliases.
 - [ ] SSL certificate is issued.
 - [ ] `https://www.workerin.co.kr` loads the production site.
