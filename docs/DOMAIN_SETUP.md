@@ -2,19 +2,26 @@
 
 ## Production Domain
 
-The intended production domain is:
+The final production domains are:
 
-- `wokerin.co.kr`
-- `www.wokerin.co.kr`
+- Primary: `https://www.workerin.co.kr`
+- Secondary: `https://workerin.co.kr`
 
 ## Current Status
 
-The domain has been prepared by the project owner.
+The final domain spelling has been corrected and confirmed by the project owner.
 
-As of this setup note, DNS records were not yet resolving locally:
+Confirmed domains:
 
-- `wokerin.co.kr` A record was not found.
-- `www.wokerin.co.kr` CNAME or A record was not found.
+- Primary: `https://www.workerin.co.kr`
+- Secondary: `https://workerin.co.kr`
+
+Current verification notes:
+
+- `workerin.co.kr` currently resolves to a Vercel IP address.
+- `www.workerin.co.kr` currently resolves through a Vercel DNS CNAME.
+- The Vercel `buildon-work` project does not yet show these custom domains in the connected project domain list.
+- HTTPS requests to both custom domains do not yet connect successfully.
 
 ## Vercel Project
 
@@ -29,17 +36,17 @@ In Vercel:
 
 1. Open the `buildon-work` project.
 2. Go to `Settings` > `Domains`.
-3. Add `wokerin.co.kr`.
-4. Add `www.wokerin.co.kr`.
+3. Add `www.workerin.co.kr`.
+4. Add `workerin.co.kr`.
 5. Choose the preferred primary domain.
 
 Recommended primary domain:
 
-- `wokerin.co.kr`
+- `www.workerin.co.kr`
 
 Recommended redirect:
 
-- `www.wokerin.co.kr` redirects to `wokerin.co.kr`
+- `workerin.co.kr` redirects to `www.workerin.co.kr`
 
 ## Required DNS Records
 
@@ -52,19 +59,28 @@ At the domain registrar or DNS provider, configure:
 
 Vercel may show a project-specific recommendation after the domain is added. If Vercel shows a different required value, follow the Vercel dashboard recommendation.
 
+Current observed DNS values:
+
+| Host | Type | Observed value |
+| --- | --- | --- |
+| `@` | `A` | `216.150.1.1` |
+| `www` | `CNAME` | `da46417babab4bc3.vercel-dns-016.com` |
+
+Because Vercel can provide project-specific DNS values, keep the current DNS values if Vercel marks them as valid in the dashboard.
+
 ## Verification Checklist
 
 After DNS is configured:
 
-- [ ] `wokerin.co.kr` resolves to Vercel.
-- [ ] `www.wokerin.co.kr` resolves to Vercel.
+- [ ] `workerin.co.kr` resolves to Vercel.
+- [ ] `www.workerin.co.kr` resolves to Vercel.
 - [ ] Vercel domain status is valid.
 - [ ] SSL certificate is issued.
-- [ ] `https://wokerin.co.kr` loads the production site.
-- [ ] `https://www.wokerin.co.kr` redirects to the preferred primary domain.
+- [ ] `https://www.workerin.co.kr` loads the production site.
+- [ ] `https://workerin.co.kr` redirects to `https://www.workerin.co.kr`.
 
 ## Notes
 
 - DNS propagation can take minutes to several hours.
 - Do not change Supabase or authentication settings until the domain is verified.
-- After the domain is live, update future auth redirect URLs and production environment settings to use `https://wokerin.co.kr`.
+- After the domain is live, update future auth redirect URLs and production environment settings to use `https://www.workerin.co.kr`.
