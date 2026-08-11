@@ -21,7 +21,8 @@ Current verification notes:
 - `workerin.co.kr` currently resolves to `216.150.1.1`, but HTTPS port 443 does not connect.
 - `www.workerin.co.kr` currently resolves through `da46417babab4bc3.vercel-dns-016.com`, but HTTPS port 443 does not connect.
 - The latest Vercel production deployment includes `www.workerin.co.kr` and `workerin.co.kr` as aliases.
-- HTTPS requests to both custom domains did not connect successfully from the local verification environment yet.
+- `https://www.workerin.co.kr` was confirmed loading in the user's browser.
+- HTTPS requests from the local terminal verification environment still fail, likely due to local network routing to Vercel edge.
 
 ## Vercel Project
 
@@ -70,12 +71,11 @@ Because the current observed values do not accept HTTPS connections, verify them
 
 ## Current Action Required
 
-At the DNS provider, confirm or update:
+At the DNS provider and Vercel dashboard, confirm:
 
-- `workerin.co.kr` apex `A` record should point to Vercel's required apex value.
-- `www.workerin.co.kr` `CNAME` should point to Vercel's required CNAME value.
-- Remove stale or conflicting A/CNAME records for the same hosts.
-- After updating DNS, wait for propagation and re-run HTTPS verification.
+- Vercel marks both domains as valid.
+- SSL certificate is issued for both domains.
+- `workerin.co.kr` redirects to `www.workerin.co.kr`.
 
 ## Verification Checklist
 
@@ -84,8 +84,8 @@ After DNS is configured:
 - [ ] `workerin.co.kr` resolves to a Vercel HTTPS-ready endpoint.
 - [ ] `www.workerin.co.kr` resolves to a Vercel HTTPS-ready endpoint.
 - [x] Vercel production deployment includes both custom domain aliases.
-- [ ] SSL certificate is issued.
-- [ ] `https://www.workerin.co.kr` loads the production site.
+- [x] `https://www.workerin.co.kr` loads the production site in the user's browser.
+- [ ] SSL certificate is confirmed in Vercel dashboard.
 - [ ] `https://workerin.co.kr` redirects to `https://www.workerin.co.kr`.
 
 ## Notes

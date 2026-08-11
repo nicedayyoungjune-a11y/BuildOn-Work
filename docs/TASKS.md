@@ -149,5 +149,6 @@
 - [x] Add `workerin.co.kr` to the Vercel project.
 - [ ] Configure DNS A record for apex domain to a HTTPS-ready Vercel endpoint.
 - [ ] Configure DNS CNAME record for `www` to a HTTPS-ready Vercel endpoint.
-- [ ] Verify Vercel domain status and SSL certificate.
-- [ ] Confirm production site loads through the custom domain.
+- [ ] Verify Vercel domain status and SSL certificate in dashboard.
+- [x] Confirm production site loads through the primary custom domain.
+- [ ] Confirm secondary domain redirects to the primary custom domain.
