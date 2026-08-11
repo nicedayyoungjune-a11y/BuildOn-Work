@@ -145,9 +145,9 @@
 - [x] Confirm primary production domain: `https://www.workerin.co.kr`.
 - [x] Confirm secondary production domain: `https://workerin.co.kr`.
 - [x] Add `docs/DOMAIN_SETUP.md`.
-- [ ] Add `www.workerin.co.kr` to the Vercel project.
-- [ ] Add `workerin.co.kr` to the Vercel project.
-- [ ] Configure DNS A record for apex domain.
-- [ ] Configure DNS CNAME record for `www`.
+- [x] Add `www.workerin.co.kr` to the Vercel project.
+- [x] Add `workerin.co.kr` to the Vercel project.
+- [x] Configure DNS A record for apex domain.
+- [x] Configure DNS CNAME record for `www`.
 - [ ] Verify Vercel domain status and SSL certificate.
 - [ ] Confirm production site loads through the custom domain.

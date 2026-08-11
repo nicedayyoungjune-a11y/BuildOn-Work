@@ -20,8 +20,8 @@ Current verification notes:
 
 - `workerin.co.kr` currently resolves to a Vercel IP address.
 - `www.workerin.co.kr` currently resolves through a Vercel DNS CNAME.
-- The Vercel `buildon-work` project does not yet show these custom domains in the connected project domain list.
-- HTTPS requests to both custom domains do not yet connect successfully.
+- The latest Vercel production deployment includes `www.workerin.co.kr` and `workerin.co.kr` as aliases.
+- HTTPS requests to both custom domains did not connect successfully from the local verification environment yet.
 
 ## Vercel Project
 
@@ -72,9 +72,9 @@ Because Vercel can provide project-specific DNS values, keep the current DNS val
 
 After DNS is configured:
 
-- [ ] `workerin.co.kr` resolves to Vercel.
-- [ ] `www.workerin.co.kr` resolves to Vercel.
-- [ ] Vercel domain status is valid.
+- [x] `workerin.co.kr` resolves to Vercel.
+- [x] `www.workerin.co.kr` resolves to Vercel.
+- [x] Vercel production deployment includes both custom domain aliases.
 - [ ] SSL certificate is issued.
 - [ ] `https://www.workerin.co.kr` loads the production site.
 - [ ] `https://workerin.co.kr` redirects to `https://www.workerin.co.kr`.
