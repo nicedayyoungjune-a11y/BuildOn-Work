@@ -152,6 +152,8 @@
 - [x] Add initial Phase 1 schema migration with core tables and status enums.
 - [x] Add initial RLS enablement and worker/company/admin policy boundaries.
 - [x] Add `docs/SUPABASE_SETUP.md`.
+- [x] Review the worker signup Server Action design before connecting Supabase Auth.
+- [x] Create `docs/WORKER_SIGNUP_ACTION_PLAN.md`.
 - [ ] Link a real Supabase project when credentials are available.
 - [ ] Apply migrations to the real Supabase project.
 - [ ] Generate database TypeScript types from the real Supabase schema.
