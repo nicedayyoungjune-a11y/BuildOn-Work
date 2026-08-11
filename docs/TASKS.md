@@ -121,6 +121,14 @@
 - [x] Define initial role boundaries, core status values, referral policy, notification policy, and privacy cautions.
 - [x] Keep the work limited to documentation without DB, authentication, authorization, Supabase, integrations, or application code.
 
+## Phase 24: Worker Signup/Login Pre-Implementation Flow Review
+
+- [x] Review the current Supabase Auth, users, workers, and referrals relationship before implementation.
+- [x] Create `docs/WORKER_AUTH_FLOW.md`.
+- [x] Define the proposed worker signup and login routes.
+- [x] Define signup input fields, referral storage policy, login flow, RLS/security criteria, admin referral review direction, and first implementation boundaries.
+- [x] Keep the work limited to documentation without signup/login pages, Supabase Auth calls, DB insert code, API routes, middleware, mock data changes, or migrations.
+
 ## Later Phases
 
 - [x] Create `docs/DATA_MODEL_PLAN.md` before DB or Supabase implementation.
