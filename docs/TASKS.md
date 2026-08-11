@@ -126,7 +126,16 @@
 - [x] Create `docs/DATA_MODEL_PLAN.md` before DB or Supabase implementation.
 - [x] Create `docs/AUTH_ROLE_PLAN.md` before authentication or authorization implementation.
 - [x] Create `docs/IMPLEMENTATION_PHASES.md` before coding real-function phases.
-- [ ] Add DB connection only when approved.
-- [ ] Add authentication only when approved.
-- [ ] Add authorization only when approved.
-- [ ] Add Supabase only when approved.
+
+## Phase 26: Supabase And DB/Auth Foundation
+
+- [x] Add Supabase client dependencies.
+- [x] Add `.env.example` for Supabase public environment variables.
+- [x] Add client and server Supabase utility boundaries.
+- [x] Add initial Phase 1 schema migration with core tables and status enums.
+- [x] Add initial RLS enablement and worker/company/admin policy boundaries.
+- [x] Add `docs/SUPABASE_SETUP.md`.
+- [ ] Link a real Supabase project when credentials are available.
+- [ ] Apply migrations to the real Supabase project.
+- [ ] Generate database TypeScript types from the real Supabase schema.
+- [ ] Implement worker signup and login.
