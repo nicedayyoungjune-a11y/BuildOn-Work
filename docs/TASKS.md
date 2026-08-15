@@ -171,3 +171,22 @@
 - [ ] Verify Vercel domain status and SSL certificate in dashboard.
 - [x] Confirm production site loads through the primary custom domain.
 - [ ] Confirm secondary domain redirects to the primary custom domain.
+
+## 27단계: Worker Signup Server Action First Pass
+
+- [x] Create `src/app/worker/signup/actions.ts`.
+- [x] Connect worker signup to Supabase Auth `signUp`.
+- [x] Store worker signup details in `users`, `workers`, and optional `referrals`.
+- [x] Redirect successful worker signup to `/worker/jobs`.
+- [x] Keep login, logout, middleware, protected routes, API routes, DB migrations, and admin DB screens for later phases.
+
+## 27-R단계: Worker Signup Metadata Trigger Recovery
+
+- [x] Confirm `auth_session_missing` after the first Server Action signup test.
+- [x] Create `supabase/migrations/20260815000000_worker_signup_profile_trigger.sql`.
+- [x] Draft `public.handle_new_worker_signup()` for Auth-created worker profile records.
+- [x] Draft `on_auth_user_created_worker_profile` trigger for `auth.users`.
+- [x] Apply the trigger SQL manually in Supabase SQL Editor.
+- [x] Convert signup action to pass worker profile data through Auth metadata.
+- [x] Verify worker signup creates Auth, `users`, `workers`, and `referrals` records.
+- [x] Keep existing migrations, RLS policies, service role usage, API routes, middleware, login, and admin DB screens unchanged.

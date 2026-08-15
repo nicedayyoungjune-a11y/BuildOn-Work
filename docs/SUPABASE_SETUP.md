@@ -60,6 +60,39 @@ It also defines:
 - Payment, remittance, payout, or settlement features
 - Electronic contract automation
 
+## Worker Signup Profile Trigger
+
+Worker signup uses a database trigger draft to avoid relying on a newly created Auth session inside a Server Action.
+
+Migration file to apply manually in Supabase SQL Editor:
+
+- `supabase/migrations/20260815000000_worker_signup_profile_trigger.sql`
+
+The trigger runs after a new `auth.users` row is created and creates:
+
+- `public.users`
+- `public.workers`
+- `public.referrals` only when referral name or referral phone metadata exists
+
+Signup metadata expected from the application:
+
+- `name`
+- `phone`
+- `preferred_regions`
+- `preferred_job_categories`
+- `preferred_payment_options`
+- `referral_name`
+- `referral_phone`
+
+Security notes for this trigger:
+
+- Do not put the password in user metadata.
+- Do not trust metadata for authorization decisions.
+- The trigger fixes `role` to `worker` instead of reading role from metadata.
+- Referral records are for admin review only.
+- Automatic referral payout, remittance, or settlement is not included.
+- This SQL must be reviewed and applied manually in Supabase SQL Editor in the next step.
+
 ## Next Implementation Step
 
 After a real Supabase project is available:
