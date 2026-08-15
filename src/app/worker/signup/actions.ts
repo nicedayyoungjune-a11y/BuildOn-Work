@@ -10,6 +10,7 @@ type SignupErrorCode =
   | "weak_password"
   | "auth_failed"
   | "auth_user_missing"
+  | "profile_create_failed"
   | "signup_failed"
   | "email_exists";
 
@@ -45,15 +46,46 @@ function logSignupFailure(step: string, error: { code?: unknown; status?: unknow
   });
 }
 
-function mapAuthError(message: string): SignupErrorCode {
-  const normalizedMessage = message.toLowerCase();
+function mapAuthError(error: { message?: unknown; code?: unknown; status?: unknown }): SignupErrorCode {
+  const normalizedCode = typeof error.code === "string" ? error.code.toLowerCase() : "";
+  const normalizedMessage = typeof error.message === "string" ? error.message.toLowerCase() : "";
+  const status = typeof error.status === "number" ? error.status : undefined;
 
   if (
+    normalizedCode.includes("email_exists") ||
+    normalizedCode.includes("user_already_exists") ||
     normalizedMessage.includes("already registered") ||
     normalizedMessage.includes("already exists") ||
     normalizedMessage.includes("user already")
   ) {
     return "email_exists";
+  }
+
+  if (
+    normalizedCode.includes("weak_password") ||
+    (normalizedMessage.includes("password") &&
+      (normalizedMessage.includes("weak") ||
+        normalizedMessage.includes("least") ||
+        normalizedMessage.includes("6")))
+  ) {
+    return "weak_password";
+  }
+
+  if (
+    normalizedCode.includes("invalid_email") ||
+    (normalizedMessage.includes("email") &&
+      (normalizedMessage.includes("invalid") || normalizedMessage.includes("format")))
+  ) {
+    return "invalid_email";
+  }
+
+  if (
+    normalizedMessage.includes("database") ||
+    normalizedMessage.includes("saving new user") ||
+    normalizedMessage.includes("trigger") ||
+    (normalizedCode === "unexpected_failure" && status === 500)
+  ) {
+    return "profile_create_failed";
   }
 
   return "auth_failed";
@@ -109,7 +141,7 @@ export async function signupWorkerAction(formData: FormData) {
 
   if (authError) {
     logSignupFailure("auth_signup", authError);
-    failWith(mapAuthError(authError.message));
+    failWith(mapAuthError(authError));
   }
 
   const authUserId = authData.user?.id;

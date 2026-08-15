@@ -37,15 +37,17 @@ const preferenceFields = [
     id: "preferred-region",
     name: "preferred_regions",
     label: "선호 지역",
-    placeholder: "예: 경기 수원, 평택",
-    required: true
+    placeholder: "예: 수원, 남양주, 대전 유성구",
+    required: true,
+    helper: "예: 수원, 남양주, 대전 유성구처럼 자유롭게 입력할 수 있습니다. 여러 개는 쉼표로 구분해 주세요."
   },
   {
     id: "preferred-job",
     name: "preferred_job_categories",
     label: "선호 직종",
-    placeholder: "예: 보통인부, 철근, 전기 보조",
-    required: true
+    placeholder: "예: 철근, 미장, 전기 보조",
+    required: true,
+    helper: "예: 철근, 미장, 전기 보조처럼 자유롭게 입력할 수 있습니다. 여러 개는 쉼표로 구분해 주세요."
   },
   {
     id: "preferred-pay",
@@ -70,11 +72,12 @@ const referralFields = [
 const errorMessages: Record<string, string> = {
   missing_required: "필수 정보를 입력해 주세요.",
   invalid_email: "이메일 형식을 확인해 주세요.",
-  weak_password: "비밀번호는 최소 6자 이상 입력해 주세요.",
-  auth_failed: "가입 계정 생성 중 문제가 발생했습니다.",
+  weak_password: "비밀번호는 6자 이상으로 입력해 주세요.",
+  auth_failed: "가입 계정 생성 중 문제가 발생했습니다. 이메일과 비밀번호를 다시 확인해 주세요.",
   auth_user_missing: "가입 계정 확인 중 문제가 발생했습니다.",
-  signup_failed: "가입 처리 중 문제가 발생했습니다. 입력 정보를 확인하고 다시 시도해 주세요.",
-  email_exists: "이미 가입된 이메일일 수 있습니다. 로그인 화면에서 다시 확인해 주세요."
+  profile_create_failed: "가입 계정은 생성됐지만 가입 정보 저장 중 문제가 발생했습니다. 관리자에게 문의해 주세요.",
+  signup_failed: "가입 처리 중 문제가 발생했습니다. 입력 정보를 확인해 주세요.",
+  email_exists: "이미 가입된 이메일입니다. 로그인하거나 다른 이메일을 사용해 주세요."
 };
 
 function TextField({
@@ -83,7 +86,8 @@ function TextField({
   label,
   type = "text",
   placeholder,
-  required = false
+  required = false,
+  helper
 }: {
   id: string;
   name: string;
@@ -91,6 +95,7 @@ function TextField({
   type?: string;
   placeholder: string;
   required?: boolean;
+  helper?: string;
 }) {
   return (
     <div>
@@ -105,6 +110,7 @@ function TextField({
         required={required}
         className="mt-2 min-h-12 w-full rounded-md border border-blue-100 bg-white px-4 text-sm text-[#071B3A] outline-none placeholder:text-slate-400"
       />
+      {helper ? <p className="mt-2 text-xs leading-5 text-slate-500">{helper}</p> : null}
     </div>
   );
 }
