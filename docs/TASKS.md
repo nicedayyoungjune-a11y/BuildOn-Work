@@ -200,3 +200,11 @@
 - [x] Keep preferred regions and job categories as free comma-separated inputs.
 - [x] Add `worker_signup_requests` migration for MVP intake without changing existing `inquiries` RLS.
 - [x] Store request intake data without creating `users`, `workers`, `referrals`, Auth sessions, API routes, or middleware.
+
+## Phase 31: Site Manager Link And PIN Flow
+
+- [x] Design a site-specific link plus PIN access model for MVP site managers.
+- [x] Create `docs/SITE_MANAGER_PIN_FLOW.md`.
+- [x] Draft `site_access_tokens` migration without public select/update/delete access.
+- [x] Create `/site/[accessCode]` PIN entry screen without PIN verification, RPC, DB reads, or site management actions.
+- [x] Keep application status enum changes, screens, Server Actions, RPCs, Auth, middleware, and API routes for later phases.
