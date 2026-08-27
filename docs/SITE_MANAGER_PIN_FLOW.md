@@ -90,6 +90,10 @@ Reasons:
 
 The first migration only creates the table and admin policy. PIN verification and site-scoped read/update behavior should be implemented later with security definer RPCs.
 
+## PIN Verification RPC
+
+The `public.verify_site_manager_pin` RPC verifies access code, active status, expiry, and PIN hash match inside the database. It returns only the matched site and company summary on success, uses one generic failure message, and updates `last_used_at` only after a successful PIN check.
+
 ## Repeated Error Rule
 
 - The same implementation error should be fixed at most two times.
