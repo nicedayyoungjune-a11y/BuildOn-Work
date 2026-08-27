@@ -93,6 +93,16 @@ Security notes for this trigger:
 - Automatic referral payout, remittance, or settlement is not included.
 - This SQL must be reviewed and applied manually in Supabase SQL Editor in the next step.
 
+## MVP Worker Signup Request Intake
+
+Formal Auth signup/login is on hold for the MVP. Worker intake now uses a request-first flow so early users can submit contact and preference information without creating a password-based account.
+
+Migration file to apply manually in Supabase SQL Editor:
+
+- `supabase/migrations/20260815010000_worker_signup_requests.sql`
+
+The request table stores name, phone, optional email, free-form preferred regions, free-form preferred job categories, optional payment preferences, referral information, and a note. The existing `inquiries` table remains unchanged because its current RLS policy is admin-only.
+
 ## Next Implementation Step
 
 After a real Supabase project is available:
