@@ -208,4 +208,5 @@
 - [x] Draft `site_access_tokens` migration without public select/update/delete access.
 - [x] Create `/site/[accessCode]` PIN entry screen without PIN verification, RPC, DB reads, or site management actions.
 - [x] Store the verified `verify_site_manager_pin` RPC as a migration draft.
-- [x] Keep application status enum changes, screens, Server Actions, RPCs, Auth, middleware, and API routes for later phases.
+- [x] Connect `/site/[accessCode]` PIN form to the `verify_site_manager_pin` Server Action without exposing `site_id`, adding Auth, middleware, API routes, or direct table reads.
+- [x] Keep application status enum changes, site management screens, additional RPCs, Auth, middleware, and API routes for later phases.

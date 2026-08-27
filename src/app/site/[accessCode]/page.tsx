@@ -1,13 +1,29 @@
 import Link from "next/link";
 
+import { verifySiteManagerPinAction } from "./actions";
+
 type SiteAccessPageProps = {
   params: Promise<{
     accessCode: string;
   }>;
+  searchParams: Promise<{
+    error?: string;
+    verified?: string;
+    success?: string;
+  }>;
 };
 
-export default async function SiteAccessPage({ params }: SiteAccessPageProps) {
+const errorMessages: Record<string, string> = {
+  invalid_pin: "접근 코드 또는 PIN을 확인해 주세요.",
+  missing_pin: "PIN을 입력해 주세요."
+};
+
+export default async function SiteAccessPage({ params, searchParams }: SiteAccessPageProps) {
   const { accessCode } = await params;
+  const { error, success, verified } = await searchParams;
+  const verifyAction = verifySiteManagerPinAction.bind(null, accessCode);
+  const errorMessage = error ? errorMessages[error] : undefined;
+  const isVerified = verified === "1" || success === "verified";
 
   return (
     <main className="min-h-screen bg-[#F3F7FF] px-4 py-5 text-[#071B3A] sm:px-6 sm:py-8 lg:px-8">
@@ -52,7 +68,19 @@ export default async function SiteAccessPage({ params }: SiteAccessPageProps) {
               <p className="break-all font-mono text-lg font-bold text-[#071B3A]">{accessCode}</p>
             </div>
 
-            <div className="mt-6">
+            {isVerified ? (
+              <div className="mt-5 rounded-lg border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm font-bold leading-6 text-emerald-800">
+                PIN이 확인되었습니다. 다음 단계에서 현장 요약과 지원자 목록을 연결합니다.
+              </div>
+            ) : null}
+
+            {errorMessage ? (
+              <div className="mt-5 rounded-lg border border-red-100 bg-red-50 px-4 py-3 text-sm font-bold leading-6 text-red-700">
+                {errorMessage}
+              </div>
+            ) : null}
+
+            <form action={verifyAction} className="mt-6">
               <label htmlFor="site-pin" className="text-sm font-bold text-[#071B3A]">
                 PIN 입력
               </label>
@@ -65,17 +93,17 @@ export default async function SiteAccessPage({ params }: SiteAccessPageProps) {
                 placeholder="전달받은 PIN을 입력하세요"
                 className="mt-2 min-h-12 w-full rounded-md border border-blue-100 bg-white px-4 text-sm text-[#071B3A] outline-none placeholder:text-slate-400"
               />
-            </div>
 
-            <button
-              type="button"
-              className="mt-5 min-h-12 w-full rounded-md bg-[#0B1F3A] px-5 text-sm font-bold text-white"
-            >
-              현장 관리 화면 확인
-            </button>
+              <button
+                type="submit"
+                className="mt-5 min-h-12 w-full rounded-md bg-[#0B1F3A] px-5 text-sm font-bold text-white"
+              >
+                현장 관리 화면 확인
+              </button>
+            </form>
 
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              PIN 검증 및 현장 데이터 조회는 다음 단계에서 연결됩니다.
+              PIN 검증은 연결되었습니다. 현장 데이터 조회는 다음 단계에서 연결됩니다.
             </p>
           </div>
 
