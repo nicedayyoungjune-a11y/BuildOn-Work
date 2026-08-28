@@ -102,7 +102,7 @@ The `public.site_manager_sessions` table has RLS enabled, allows authenticated a
 
 The `public.create_site_manager_session` RPC should verify the access code and PIN, store only a server-generated session token hash, set an 8-hour expiry, and return a generic failure message without exposing token or PIN details.
 
-The session creation RPC has been applied and checked with valid PIN, invalid PIN, duplicate token hash, and session row creation cases. The next implementation step is to generate a session token in the Server Action, store only its hash through the RPC, and set the token in an HttpOnly cookie.
+The session creation RPC has been applied and checked with valid PIN, invalid PIN, duplicate token hash, and session row creation cases. The Server Action generates the session token, stores only its hash through the RPC, and sets the token in an HttpOnly cookie.
 
 ## Repeated Error Rule
 

@@ -214,4 +214,5 @@
 - [x] Apply `site_manager_sessions` in Supabase SQL Editor and confirm table creation, RLS enabled, admin manage policy, and no anon direct table access.
 - [x] Draft `create_site_manager_session` RPC to verify PINs and create 8-hour site manager sessions with token hashes only.
 - [x] Apply `create_site_manager_session` in Supabase SQL Editor and confirm valid PIN, invalid PIN, duplicate token hash handling, and session row creation.
+- [x] Update the site PIN Server Action to create a random session token, send only its hash to `create_site_manager_session`, store the token in an HttpOnly cookie, and keep the `verified=1` redirect without adding real applicant or attendance reads.
 - [x] Keep application status enum changes, site management screens, additional RPCs, Auth, middleware, and API routes for later phases.
