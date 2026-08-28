@@ -212,4 +212,6 @@
 - [x] Add a temporary verified site manager summary view with upcoming applicant and attendance features shown as inactive guidance.
 - [x] Draft `site_manager_sessions` migration for temporary site manager access sessions with token hashes and admin-only table management.
 - [x] Apply `site_manager_sessions` in Supabase SQL Editor and confirm table creation, RLS enabled, admin manage policy, and no anon direct table access.
+- [x] Draft `create_site_manager_session` RPC to verify PINs and create 8-hour site manager sessions with token hashes only.
+- [x] Apply `create_site_manager_session` in Supabase SQL Editor and confirm valid PIN, invalid PIN, duplicate token hash handling, and session row creation.
 - [x] Keep application status enum changes, site management screens, additional RPCs, Auth, middleware, and API routes for later phases.

@@ -100,6 +100,10 @@ Verified query parameters must not be used as data access permission. After PIN 
 
 The `public.site_manager_sessions` table has RLS enabled, allows authenticated admin management only, and does not grant anon direct table access.
 
+The `public.create_site_manager_session` RPC should verify the access code and PIN, store only a server-generated session token hash, set an 8-hour expiry, and return a generic failure message without exposing token or PIN details.
+
+The session creation RPC has been applied and checked with valid PIN, invalid PIN, duplicate token hash, and session row creation cases. The next implementation step is to generate a session token in the Server Action, store only its hash through the RPC, and set the token in an HttpOnly cookie.
+
 ## Repeated Error Rule
 
 - The same implementation error should be fixed at most two times.
