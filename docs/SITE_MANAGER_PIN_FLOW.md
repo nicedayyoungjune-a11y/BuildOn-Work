@@ -94,6 +94,12 @@ The first migration only creates the table and admin policy. PIN verification an
 
 The `public.verify_site_manager_pin` RPC verifies access code, active status, expiry, and PIN hash match inside the database. It returns only the matched site and company summary on success, uses one generic failure message, and updates `last_used_at` only after a successful PIN check.
 
+## Temporary Site Manager Sessions
+
+Verified query parameters must not be used as data access permission. After PIN verification, the MVP should create a temporary site manager session tied to the verified site. The browser stores only an HttpOnly cookie, while `public.site_manager_sessions` stores only `session_token_hash`, status, expiry, and usage timestamps. Site overview, applicant, and attendance reads should validate the access code and session token through security definer RPCs before returning site-scoped data.
+
+The `public.site_manager_sessions` table has RLS enabled, allows authenticated admin management only, and does not grant anon direct table access.
+
 ## Repeated Error Rule
 
 - The same implementation error should be fixed at most two times.

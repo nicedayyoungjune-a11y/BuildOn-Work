@@ -210,4 +210,6 @@
 - [x] Store the verified `verify_site_manager_pin` RPC as a migration draft.
 - [x] Connect `/site/[accessCode]` PIN form to the `verify_site_manager_pin` Server Action without exposing `site_id`, adding Auth, middleware, API routes, or direct table reads.
 - [x] Add a temporary verified site manager summary view with upcoming applicant and attendance features shown as inactive guidance.
+- [x] Draft `site_manager_sessions` migration for temporary site manager access sessions with token hashes and admin-only table management.
+- [x] Apply `site_manager_sessions` in Supabase SQL Editor and confirm table creation, RLS enabled, admin manage policy, and no anon direct table access.
 - [x] Keep application status enum changes, site management screens, additional RPCs, Auth, middleware, and API routes for later phases.
